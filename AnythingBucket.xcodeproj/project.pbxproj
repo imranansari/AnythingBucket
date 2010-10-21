@@ -1651,9 +1651,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = AnythingBucket;
 			};
@@ -1669,9 +1669,9 @@
 					"\"$(SRCROOT)/../../Dropbox/Source/public/trundle/Samples/iPad Sample\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Prefix.pch;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = Resources/Info.plist;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = AnythingBucket;
 				VALIDATE_PRODUCT = YES;
