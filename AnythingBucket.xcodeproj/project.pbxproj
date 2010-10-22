@@ -178,6 +178,8 @@
 		4535C38F12717F16006291AC /* CTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C38D12717F16006291AC /* CTestViewController.m */; };
 		4535C39012717F16006291AC /* CTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4535C38E12717F16006291AC /* CTestViewController.xib */; };
 		4535C41512718374006291AC /* CMainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C41312718374006291AC /* CMainNavigationController.m */; };
+		4535C52E12723BEC006291AC /* UIActionSheet_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C52B12723BEC006291AC /* UIActionSheet_BlocksExtensions.m */; };
+		4535C52F12723BEC006291AC /* UIViewController_KeyboardExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C52D12723BEC006291AC /* UIViewController_KeyboardExtensions.m */; };
 		4549A0E2126B7284003F1DBE /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E12126B7283003F1DBE /* CXMLDocument_CreationExtensions.m */; };
 		4549A0E3126B7284003F1DBE /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E14126B7283003F1DBE /* CXMLNode_CreationExtensions.m */; };
 		4549A0E4126B7284003F1DBE /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E16126B7283003F1DBE /* CXMLDocument.m */; };
@@ -199,15 +201,12 @@
 		458FF5B21270CA6100FCD632 /* CMyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF59A1270CA6100FCD632 /* CMyCell.m */; };
 		458FF5B31270CA6100FCD632 /* CNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF59C1270CA6100FCD632 /* CNearbyViewController.m */; };
 		458FF5B41270CA6100FCD632 /* CNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF59D1270CA6100FCD632 /* CNearbyViewController.xib */; };
-		458FF5B51270CA6100FCD632 /* CNonScrollingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF59F1270CA6100FCD632 /* CNonScrollingTextView.m */; };
 		458FF5B61270CA6100FCD632 /* CPosting.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A11270CA6100FCD632 /* CPosting.m */; };
 		458FF5B71270CA6100FCD632 /* CPostingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A31270CA6100FCD632 /* CPostingsTableViewController.m */; };
 		458FF5B81270CA6100FCD632 /* CPostingsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A41270CA6100FCD632 /* CPostingsTableViewController.xib */; };
 		458FF5B91270CA6100FCD632 /* CPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A61270CA6100FCD632 /* CPostViewController.m */; };
 		458FF5BA1270CA6100FCD632 /* CPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A71270CA6100FCD632 /* CPostViewController.xib */; };
 		458FF5BB1270CA6100FCD632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A81270CA6100FCD632 /* main.m */; };
-		458FF5BC1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */; };
-		458FF5BD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */; };
 		458FF6841270FEBB00FCD632 /* CCouchDBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF6831270FEBB00FCD632 /* CCouchDBView.m */; };
 /* End PBXBuildFile section */
 
@@ -514,6 +513,10 @@
 		4535C38E12717F16006291AC /* CTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CTestViewController.xib; sourceTree = "<group>"; };
 		4535C41212718374006291AC /* CMainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainNavigationController.h; sourceTree = "<group>"; };
 		4535C41312718374006291AC /* CMainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainNavigationController.m; sourceTree = "<group>"; };
+		4535C52A12723BEC006291AC /* UIActionSheet_BlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionSheet_BlocksExtensions.h; sourceTree = "<group>"; };
+		4535C52B12723BEC006291AC /* UIActionSheet_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActionSheet_BlocksExtensions.m; sourceTree = "<group>"; };
+		4535C52C12723BEC006291AC /* UIViewController_KeyboardExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_KeyboardExtensions.h; sourceTree = "<group>"; };
+		4535C52D12723BEC006291AC /* UIViewController_KeyboardExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_KeyboardExtensions.m; sourceTree = "<group>"; };
 		45499E11126B7283003F1DBE /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		45499E12126B7283003F1DBE /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		45499E13126B7283003F1DBE /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -561,8 +564,6 @@
 		458FF59B1270CA6100FCD632 /* CNearbyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNearbyViewController.h; sourceTree = "<group>"; };
 		458FF59C1270CA6100FCD632 /* CNearbyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNearbyViewController.m; sourceTree = "<group>"; };
 		458FF59D1270CA6100FCD632 /* CNearbyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CNearbyViewController.xib; sourceTree = "<group>"; };
-		458FF59E1270CA6100FCD632 /* CNonScrollingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNonScrollingTextView.h; sourceTree = "<group>"; };
-		458FF59F1270CA6100FCD632 /* CNonScrollingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNonScrollingTextView.m; sourceTree = "<group>"; };
 		458FF5A01270CA6100FCD632 /* CPosting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPosting.h; sourceTree = "<group>"; };
 		458FF5A11270CA6100FCD632 /* CPosting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPosting.m; sourceTree = "<group>"; };
 		458FF5A21270CA6100FCD632 /* CPostingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPostingsTableViewController.h; sourceTree = "<group>"; };
@@ -573,10 +574,6 @@
 		458FF5A71270CA6100FCD632 /* CPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CPostViewController.xib; sourceTree = "<group>"; };
 		458FF5A81270CA6100FCD632 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		458FF5A91270CA6100FCD632 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
-		458FF5AA1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionSheet_BlocksExtensions.h; sourceTree = "<group>"; };
-		458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActionSheet_BlocksExtensions.m; sourceTree = "<group>"; };
-		458FF5AC1270CA6100FCD632 /* UIViewController_KeyboardExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_KeyboardExtensions.h; sourceTree = "<group>"; };
-		458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_KeyboardExtensions.m; sourceTree = "<group>"; };
 		458FF6821270FEBB00FCD632 /* CCouchDBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCouchDBView.h; sourceTree = "<group>"; };
 		458FF6831270FEBB00FCD632 /* CCouchDBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCouchDBView.m; sourceTree = "<group>"; };
 		45CD4687126CD8DD00F38B80 /* Asserts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asserts.h; sourceTree = "<group>"; };
@@ -1297,6 +1294,17 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		4535C52912723BEC006291AC /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4535C52A12723BEC006291AC /* UIActionSheet_BlocksExtensions.h */,
+				4535C52B12723BEC006291AC /* UIActionSheet_BlocksExtensions.m */,
+				4535C52C12723BEC006291AC /* UIViewController_KeyboardExtensions.h */,
+				4535C52D12723BEC006291AC /* UIViewController_KeyboardExtensions.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		45499DE0126B7283003F1DBE /* TouchXML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1394,8 +1402,6 @@
 				458FF59B1270CA6100FCD632 /* CNearbyViewController.h */,
 				458FF59C1270CA6100FCD632 /* CNearbyViewController.m */,
 				458FF59D1270CA6100FCD632 /* CNearbyViewController.xib */,
-				458FF59E1270CA6100FCD632 /* CNonScrollingTextView.h */,
-				458FF59F1270CA6100FCD632 /* CNonScrollingTextView.m */,
 				458FF5A01270CA6100FCD632 /* CPosting.h */,
 				458FF5A11270CA6100FCD632 /* CPosting.m */,
 				458FF5A21270CA6100FCD632 /* CPostingsTableViewController.h */,
@@ -1406,15 +1412,12 @@
 				458FF5A71270CA6100FCD632 /* CPostViewController.xib */,
 				458FF5A81270CA6100FCD632 /* main.m */,
 				458FF5A91270CA6100FCD632 /* Prefix.pch */,
-				458FF5AA1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.h */,
-				458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */,
-				458FF5AC1270CA6100FCD632 /* UIViewController_KeyboardExtensions.h */,
-				458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */,
 				4535C38C12717F16006291AC /* CTestViewController.h */,
 				4535C38D12717F16006291AC /* CTestViewController.m */,
 				4535C38E12717F16006291AC /* CTestViewController.xib */,
 				4535C41212718374006291AC /* CMainNavigationController.h */,
 				4535C41312718374006291AC /* CMainNavigationController.m */,
+				4535C52912723BEC006291AC /* Support */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1645,16 +1648,15 @@
 				458FF5B11270CA6100FCD632 /* CMainWindowController.m in Sources */,
 				458FF5B21270CA6100FCD632 /* CMyCell.m in Sources */,
 				458FF5B31270CA6100FCD632 /* CNearbyViewController.m in Sources */,
-				458FF5B51270CA6100FCD632 /* CNonScrollingTextView.m in Sources */,
 				458FF5B61270CA6100FCD632 /* CPosting.m in Sources */,
 				458FF5B71270CA6100FCD632 /* CPostingsTableViewController.m in Sources */,
 				458FF5B91270CA6100FCD632 /* CPostViewController.m in Sources */,
 				458FF5BB1270CA6100FCD632 /* main.m in Sources */,
-				458FF5BC1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m in Sources */,
-				458FF5BD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m in Sources */,
 				458FF6841270FEBB00FCD632 /* CCouchDBView.m in Sources */,
 				4535C38F12717F16006291AC /* CTestViewController.m in Sources */,
 				4535C41512718374006291AC /* CMainNavigationController.m in Sources */,
+				4535C52E12723BEC006291AC /* UIActionSheet_BlocksExtensions.m in Sources */,
+				4535C52F12723BEC006291AC /* UIViewController_KeyboardExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
