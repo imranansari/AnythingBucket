@@ -1,0 +1,1 @@
+http://touchcode.couchone.com/anything-db/_design/api/_view/all-postings

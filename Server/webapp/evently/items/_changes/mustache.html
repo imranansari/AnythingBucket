@@ -1,0 +1,26 @@
+<ul>
+  {{#items}}
+    <li>
+<!--
+      <p>{{_id}}</p>
+ -->
+      <div class="avatar">
+      	{{#profile}}
+        {{#gravatar_url}}<img src="{{gravatar_url}}" alt="{{name}}"/>{{/gravatar_url}}
+        <div class="name">
+          {{nickname}}
+        </div>
+        {{/profile}}
+      </div>
+      <p>{{title}}</p>
+      <p>{{message}}</p>
+      {{#attachment}}
+      <a href="/anything-db/{{attachment}}"><img width="100" height="100" src="/anything-db/{{attachment}}"/></a>
+      {{/attachment}}
+
+      {{#static_map_url}}
+      <img src="{{static_map_url}}"/>
+      {{/static_map_url}}
+    </li>
+  {{/items}}
+</ul>
