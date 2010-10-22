@@ -1,5 +1,5 @@
 //
-//  CMyCell.h
+//  CMailTableViewCell.h
 //  AnythingDB
 //
 //  Created by Jonathan Wight on 10/18/10.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CMyCell : UITableViewCell {
+@interface CMailTableViewCell : UITableViewCell {
     UITextField *textField;
 }
 

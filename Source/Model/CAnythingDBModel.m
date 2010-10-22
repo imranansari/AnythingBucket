@@ -1,0 +1,37 @@
+//
+//  CAnythingDBModel.m
+//  AnythingBucket
+//
+//  Created by Jonathan Wight on 10/22/10.
+//  Copyright 2010 toxicsoftware.com. All rights reserved.
+//
+
+#import "CAnythingDBModel.h"
+
+
+static CAnythingDBModel *gInstance = NULL;
+
+@implementation CAnythingDBModel
+
++ (CAnythingDBModel *)instance
+    {
+    @synchronized(self)
+        {
+        if (gInstance == NULL)
+            {
+            gInstance = [[self alloc] init];
+            }
+        }
+    return(gInstance);
+    }
+
+- (id)init
+    {
+    if ((self = [super init]) != NULL)
+        {
+        self.name = @"Model";
+        }
+    return(self);
+    }
+
+@end

@@ -1,12 +1,12 @@
 //
-//  CPosting.m
-//  AnythingDB
+//  CPosting_CouchDBExtensions.m
+//  AnythingBucket
 //
-//  Created by Jonathan Wight on 10/17/10.
+//  Created by Jonathan Wight on 10/22/10.
 //  Copyright 2010 toxicsoftware.com. All rights reserved.
 //
 
-#import "CPosting.h"
+#import "CPosting_CouchDBExtensions.h"
 
 #import "CUserNotificationManager.h"
 #import "CBetterLocationManager.h"
@@ -16,35 +16,7 @@
 #import "CCouchDBAttachment.h"
 #import "CCouchDBDocument.h"
 
-@implementation CPosting
-
-@synthesize title;
-@synthesize body;
-@synthesize tags;
-@synthesize attachments;
-
-- (id)init
-    {
-    if ((self = [super init]) != NULL)
-        {
-        tags = [[NSMutableArray alloc] init];
-        }
-    return(self);
-    }
-
-- (void)dealloc
-    {
-    [title release];
-    title = NULL;
-    [body release];
-    body = NULL;
-    [tags release];
-    tags = NULL;
-    [attachments release];
-    attachments = NULL;
-    //
-    [super dealloc];
-    }
+@implementation CPosting (CPosting_CouchDBExtensions)
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler
     {
@@ -68,10 +40,10 @@
     
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
         
-        for (CCouchDBAttachment *theAttachment in self.attachments)
-            {
-            [inDocument addAttachment:theAttachment];
-            }
+//        for (CCouchDBAttachment *theAttachment in self.attachments)
+//            {
+//            [inDocument addAttachment:theAttachment];
+//            }
 
         if (inSuccessHandler)
             {

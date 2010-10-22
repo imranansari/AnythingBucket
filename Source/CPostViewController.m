@@ -23,7 +23,9 @@
 #import "CCouchDBAttachment.h"
 #import "UIActionSheet_BlocksExtensions.h"
 #import "UIViewController_KeyboardExtensions.h"
-#import "CMyCell.h"
+#import "CMailTableViewCell.h"
+#import "CPosting_CouchDBExtensions.h"
+#import "CAnythingDBModel.h"
 
 #define UNNULLIFY(x) x == [NSNull null] ? NULL : x;
 
@@ -74,7 +76,8 @@
     {
     if (posting == NULL)
         {
-        posting = [[CPosting alloc] init];
+        CPosting *thePosting = [NSEntityDescription insertNewObjectForEntityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
+        posting = [thePosting retain];
         }
     return(posting);
     }
@@ -152,7 +155,7 @@
         {
         case 0:
             {
-            CMyCell *theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            CMailTableViewCell *theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
             theCell.textLabel.text = @"Tags:";
 //            theCell.textField.text = [self.posting objectForKey:@"subject"];
             theReturnedCell = theCell;
@@ -160,7 +163,7 @@
             break;
         case 1:
             {
-            CMyCell *theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            CMailTableViewCell *theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
             self.titleField = theCell.textField;
             theCell.textLabel.text = @"Subject:";
             theCell.textField.text = self.posting.title;
@@ -362,19 +365,19 @@
 
         NSData *theJPEGRepresentation = UIImageJPEGRepresentation(theImage, 0.8);
         NSLog(@"%d", [theJPEGRepresentation length]);
-        self.posting.attachments = [NSArray arrayWithObjects:
-            [[[CCouchDBAttachment alloc] initWithIdentifier:@"image.jpg" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
-            NULL];
+//        self.posting.attachments = [NSArray arrayWithObjects:
+//            [[[CCouchDBAttachment alloc] initWithIdentifier:@"image.jpg" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
+//            NULL];
         }
     else if ([theMediaType isEqualToString:(id)kUTTypeMovie])
         {
         // public.movie
-        NSLog(@"%@", info);
+//        NSLog(@"%@", info);
 
 //    NSLog(@"%@", UTTypeCopyPreferredTagWithClass(kUTTypeMovie, kUTTagClassMIMEType));
 
 
-        NSLog(@"%@", UTTypeCopyDeclaration(kUTTypeMovie));
+//        NSLog(@"%@", UTTypeCopyDeclaration(kUTTypeMovie));
 
         NSURL *theMediaURL = [info objectForKey:UIImagePickerControllerMediaURL];
         NSData *theData = NULL;
@@ -385,9 +388,9 @@
             NSLog(@"%@", theError);
             }
 
-        self.posting.attachments = [NSArray arrayWithObjects:
-            [[[CCouchDBAttachment alloc] initWithIdentifier:@"movie.mov" contentType:@"video/quicktime" data:theData] autorelease],
-            NULL];
+//        self.posting.attachments = [NSArray arrayWithObjects:
+//            [[[CCouchDBAttachment alloc] initWithIdentifier:@"movie.mov" contentType:@"video/quicktime" data:theData] autorelease],
+//            NULL];
         }
     
     [self dismissModalViewControllerAnimated:YES];

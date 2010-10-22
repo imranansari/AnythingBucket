@@ -1,18 +1,18 @@
 //
-//  CMyCell.m
+//  CMailTableViewCell.m
 //  AnythingDB
 //
 //  Created by Jonathan Wight on 10/18/10.
 //  Copyright 2010 toxicsoftware.com. All rights reserved.
 //
 
-#import "CMyCell.h"
+#import "CMailTableViewCell.h"
 
 #import <QuartzCore/QuartzCore.h>
 
 #import "Geometry.h"
 
-@implementation CMyCell
+@implementation CMailTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
     {
@@ -26,6 +26,13 @@
     return(self);
     }
 
+- (void)dealloc
+    {
+    [textField release];
+    textField = NULL;
+    //
+    [super dealloc];
+    }
 
 - (UITextField *)textField
     {
@@ -33,7 +40,7 @@
         {
         textField = [[UITextField alloc] initWithFrame:self.contentView.bounds];
         textField.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
-        textField.textColor = [UIColor grayColor];
+        textField.textColor = [UIColor blackColor];
         [textField sizeToFit];
         }
     return(textField);
