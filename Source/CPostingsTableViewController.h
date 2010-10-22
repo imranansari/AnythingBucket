@@ -14,6 +14,4 @@
 
 @property (readwrite, nonatomic, retain) NSMutableArray *postings;
 
-- (IBAction)post:(id)inSender;
-
 @end

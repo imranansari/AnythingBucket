@@ -12,6 +12,8 @@
 #import "CCouchDBDatabase.h"
 #import "CCouchDBDocument.h"
 #import "CPostViewController.h"
+#import "CCouchDBView.h"
+#import "CTestViewController.h"
 
 @implementation CPostingsTableViewController
 
@@ -22,7 +24,7 @@
 	[super viewDidLoad];
 
 	self.clearsSelectionOnViewWillAppear = NO;
-	 
+
 	self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	}
 
@@ -31,7 +33,6 @@
 	[super viewWillAppear:animated];
 
     CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
-        NSLog(@"Done: %@", inParameter);
 
 		dispatch_async(dispatch_get_main_queue(), ^(void) {
 			self.postings = inParameter;
@@ -39,7 +40,9 @@
 				});
         };
 
-	[[[CAnythingDBServer sharedInstance] database] fetchAllDocumentsWithSuccessHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
+    CCouchDBView *theView = [[[CCouchDBView alloc] initWithDatabase:[CAnythingDBServer sharedInstance].database identifier:@"_design/api"] autorelease];
+    
+    [theView fetchViewNamed:@"all-postings" options:NULL withSuccessHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
 	}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -64,17 +67,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
 		}
 		
-	cell.textLabel.text = [[self.postings objectAtIndex:indexPath.row] identifier];
+    CCouchDBDocument *theDocument = [self.postings objectAtIndex:indexPath.row];
+    
+	cell.textLabel.text = [theDocument.content objectForKey:@"title"];
     return cell;
 	}
+    
+#pragma mark -
 
-- (IBAction)post:(id)inSender
-	{
-	CPostViewController *theViewController = [[[CPostViewController alloc] init] autorelease];
-	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theViewController] autorelease];
-	
-	[self presentModalViewController:theNavigationController animated:YES];
-	}
 
 @end
 

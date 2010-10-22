@@ -175,6 +175,9 @@
 		451EBEC8126D401900FF456D /* CLayoutableProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 451EBE91126D401900FF456D /* CLayoutableProxy.m */; };
 		451EBEC9126D401900FF456D /* CLayoutGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 451EBE93126D401900FF456D /* CLayoutGroup.m */; };
 		451EBECA126D401900FF456D /* CLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 451EBE95126D401900FF456D /* CLayoutManager.m */; };
+		4535C38F12717F16006291AC /* CTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C38D12717F16006291AC /* CTestViewController.m */; };
+		4535C39012717F16006291AC /* CTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4535C38E12717F16006291AC /* CTestViewController.xib */; };
+		4535C41512718374006291AC /* CMainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C41312718374006291AC /* CMainNavigationController.m */; };
 		4549A0E2126B7284003F1DBE /* CXMLDocument_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E12126B7283003F1DBE /* CXMLDocument_CreationExtensions.m */; };
 		4549A0E3126B7284003F1DBE /* CXMLNode_CreationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E14126B7283003F1DBE /* CXMLNode_CreationExtensions.m */; };
 		4549A0E4126B7284003F1DBE /* CXMLDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E16126B7283003F1DBE /* CXMLDocument.m */; };
@@ -205,6 +208,7 @@
 		458FF5BB1270CA6100FCD632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A81270CA6100FCD632 /* main.m */; };
 		458FF5BC1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */; };
 		458FF5BD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */; };
+		458FF6841270FEBB00FCD632 /* CCouchDBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF6831270FEBB00FCD632 /* CCouchDBView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -505,6 +509,11 @@
 		451EBE93126D401900FF456D /* CLayoutGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLayoutGroup.m; sourceTree = "<group>"; };
 		451EBE94126D401900FF456D /* CLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLayoutManager.h; sourceTree = "<group>"; };
 		451EBE95126D401900FF456D /* CLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLayoutManager.m; sourceTree = "<group>"; };
+		4535C38C12717F16006291AC /* CTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTestViewController.h; sourceTree = "<group>"; };
+		4535C38D12717F16006291AC /* CTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTestViewController.m; sourceTree = "<group>"; };
+		4535C38E12717F16006291AC /* CTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CTestViewController.xib; sourceTree = "<group>"; };
+		4535C41212718374006291AC /* CMainNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainNavigationController.h; sourceTree = "<group>"; };
+		4535C41312718374006291AC /* CMainNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMainNavigationController.m; sourceTree = "<group>"; };
 		45499E11126B7283003F1DBE /* CXMLDocument_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLDocument_CreationExtensions.h; sourceTree = "<group>"; };
 		45499E12126B7283003F1DBE /* CXMLDocument_CreationExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CXMLDocument_CreationExtensions.m; sourceTree = "<group>"; };
 		45499E13126B7283003F1DBE /* CXMLNode_CreationExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CXMLNode_CreationExtensions.h; sourceTree = "<group>"; };
@@ -568,6 +577,8 @@
 		458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIActionSheet_BlocksExtensions.m; sourceTree = "<group>"; };
 		458FF5AC1270CA6100FCD632 /* UIViewController_KeyboardExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_KeyboardExtensions.h; sourceTree = "<group>"; };
 		458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_KeyboardExtensions.m; sourceTree = "<group>"; };
+		458FF6821270FEBB00FCD632 /* CCouchDBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCouchDBView.h; sourceTree = "<group>"; };
+		458FF6831270FEBB00FCD632 /* CCouchDBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCouchDBView.m; sourceTree = "<group>"; };
 		45CD4687126CD8DD00F38B80 /* Asserts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asserts.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1241,6 +1252,8 @@
 				451AF929126A7C1B001A1D27 /* CouchDBClientTypes.h */,
 				451AF92A126A7C1B001A1D27 /* NSError_CouchDBExtensions.h */,
 				451AF92B126A7C1B001A1D27 /* NSError_CouchDBExtensions.m */,
+				458FF6821270FEBB00FCD632 /* CCouchDBView.h */,
+				458FF6831270FEBB00FCD632 /* CCouchDBView.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1397,6 +1410,11 @@
 				458FF5AB1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m */,
 				458FF5AC1270CA6100FCD632 /* UIViewController_KeyboardExtensions.h */,
 				458FF5AD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m */,
+				4535C38C12717F16006291AC /* CTestViewController.h */,
+				4535C38D12717F16006291AC /* CTestViewController.m */,
+				4535C38E12717F16006291AC /* CTestViewController.xib */,
+				4535C41212718374006291AC /* CMainNavigationController.h */,
+				4535C41312718374006291AC /* CMainNavigationController.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1472,6 +1490,7 @@
 				458FF5B41270CA6100FCD632 /* CNearbyViewController.xib in Resources */,
 				458FF5B81270CA6100FCD632 /* CPostingsTableViewController.xib in Resources */,
 				458FF5BA1270CA6100FCD632 /* CPostViewController.xib in Resources */,
+				4535C39012717F16006291AC /* CTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1633,6 +1652,9 @@
 				458FF5BB1270CA6100FCD632 /* main.m in Sources */,
 				458FF5BC1270CA6100FCD632 /* UIActionSheet_BlocksExtensions.m in Sources */,
 				458FF5BD1270CA6100FCD632 /* UIViewController_KeyboardExtensions.m in Sources */,
+				458FF6841270FEBB00FCD632 /* CCouchDBView.m in Sources */,
+				4535C38F12717F16006291AC /* CTestViewController.m in Sources */,
+				4535C41512718374006291AC /* CMainNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
