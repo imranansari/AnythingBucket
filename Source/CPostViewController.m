@@ -50,6 +50,8 @@
 	{
 	if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 		{
+        self.title = @"Post";
+        self.textViewRowHeight = 279;
 		}
 	return(self);
 	}
@@ -67,27 +69,29 @@
     //
     [super dealloc];
     }
+    
+- (CPosting *)posting
+    {
+    if (posting == NULL)
+        {
+        posting = [[CPosting alloc] init];
+        }
+    return(posting);
+    }
 
 - (void)viewDidLoad
     {
     [super viewDidLoad];
+    
+    NSLog(@"%@", self.posting);
     //
-    self.title = @"Post";
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)] autorelease];
-
-    NSLog(@"WEIRD");
-    self.posting = [[[CPosting alloc] init] autorelease];
-
-    self.textViewRowHeight = 279;
-
-//    textView.layer.borderWidth = 2.0;
-//    textView.layer.borderColor = [UIColor redColor].CGColor;
-
     }
 
 - (void)viewDidUnload
     {
     [super viewDidLoad];
+    //
     //
     self.textView = NULL;
     self.inputAccessoryView = NULL;
@@ -119,6 +123,9 @@
 - (void)viewWillDisappear:(BOOL)animated
     {
     [super viewWillDisappear:animated];
+
+    self.posting.title = self.titleField.text;
+    self.posting.body = self.textView.text;
     
     [self stopRespondingToKeyboardAppearance];
     }
@@ -139,29 +146,35 @@
     
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
     {
-    UITableViewCell *theCell = NULL;
+    UITableViewCell *theReturnedCell = NULL;
     
     switch (indexPath.row)
         {
         case 0:
             {
-            theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            CMyCell *theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
             theCell.textLabel.text = @"Tags:";
+//            theCell.textField.text = [self.posting objectForKey:@"subject"];
+            theReturnedCell = theCell;
             }
             break;
         case 1:
             {
-            theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            CMyCell *theCell = [[[CMyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            self.titleField = theCell.textField;
             theCell.textLabel.text = @"Subject:";
+            theCell.textField.text = self.posting.title;
+            theReturnedCell = theCell;
             }
             break;
         case 2:
             {
-            theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
-            theCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            theReturnedCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
+            theReturnedCell.selectionStyle = UITableViewCellSelectionStyleNone;
             if (self.textView == NULL)
                 {
-                self.textView = [[[UITextView alloc] initWithFrame:theCell.contentView.bounds] autorelease];
+                self.textView = [[[UITextView alloc] initWithFrame:theReturnedCell.contentView.bounds] autorelease];
+                self.textView.text = self.posting.body;
                 self.textView.scrollEnabled = NO;
                 self.textView.showsVerticalScrollIndicator = NO;
                 
@@ -173,7 +186,7 @@
                 
                 [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self.textView queue:NULL usingBlock:^(NSNotification *arg1) {
                     CGSize theSize = [self.textView sizeThatFits:(CGSize){320, 99999}];
-                    NSLog(@"%@", NSStringFromCGSize(theSize));
+//                    NSLog(@"%@", NSStringFromCGSize(theSize));
                     if (theSize.height > 67)
                         {
                         [self.tableView beginUpdates];
@@ -183,13 +196,13 @@
                         }
                     }];
                 
-                [theCell.contentView addSubview:self.textView];
+                [theReturnedCell.contentView addSubview:self.textView];
                 }
             }
             break;
         }
     
-    return(theCell);
+    return(theReturnedCell);
     }
 
 #pragma mark -
@@ -198,7 +211,7 @@
     {
     if (indexPath.row == 2)
         {
-        NSLog(@"%g", self.textViewRowHeight);
+//        NSLog(@"%g", self.textViewRowHeight);
         return(self.textViewRowHeight);
         }
     else
@@ -227,14 +240,14 @@
     
     [[CUserNotificationManager instance] enqueueNotificationWithMessage:@"Posting"];
     
-    NSMutableDictionary *theDocument = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-        self.textView.text, @"body",
-        NULL];
-    self.posting.document = theDocument;
+    self.posting.title = self.titleField.text;
+    self.posting.body = self.textView.text;
     
     CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
         NSLog(@"########## RECEIVED: %@", inParameter);
         [[CUserNotificationManager instance] dequeueCurrentNotification];
+        
+        [self dismissModalViewControllerAnimated:YES];
         };
     CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
         NSLog(@"Error: %@", inError);
@@ -322,7 +335,7 @@
     
     CGSize theSize = [theNewString sizeWithFont:self.textView.font constrainedToSize:(CGSize){320, 99999} lineBreakMode:UILineBreakModeWordWrap];
     
-    NSLog(@"%@", NSStringFromCGSize(theSize));
+//    NSLog(@"%@", NSStringFromCGSize(theSize));
     if (theSize.height > 67)
         {
         [self.tableView beginUpdates];
@@ -335,7 +348,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
     {
-    NSLog(@"%@", info);
+//    NSLog(@"%@", info);
     id theMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([theMediaType isEqualToString:(id)kUTTypeImage])
         {
@@ -350,7 +363,7 @@
         NSData *theJPEGRepresentation = UIImageJPEGRepresentation(theImage, 0.8);
         NSLog(@"%d", [theJPEGRepresentation length]);
         self.posting.attachments = [NSArray arrayWithObjects:
-            [[[CCouchDBAttachment alloc] initWithIdentifier:@"image" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
+            [[[CCouchDBAttachment alloc] initWithIdentifier:@"image.jpg" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
             NULL];
         }
     
