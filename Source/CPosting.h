@@ -12,13 +12,16 @@
 
 @interface CPosting : NSObject {
     NSDictionary *document;
-    NSArray *attachments;
+    NSString *title;
+    NSString *body;
     NSArray *tags;
+    NSArray *attachments;
 }
 
-@property (readwrite, nonatomic, retain) NSDictionary *document;
-@property (readwrite, nonatomic, retain) NSArray *attachments;
+@property (readwrite, nonatomic, retain) NSString *title;
+@property (readwrite, nonatomic, retain) NSString *body;
 @property (readwrite, nonatomic, retain) NSArray *tags;
+@property (readwrite, nonatomic, retain) NSArray *attachments;
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler;
 

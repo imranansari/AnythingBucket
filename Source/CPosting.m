@@ -18,9 +18,10 @@
 
 @implementation CPosting
 
-@synthesize document;
-@synthesize attachments;
+@synthesize title;
+@synthesize body;
 @synthesize tags;
+@synthesize attachments;
 
 - (id)init
     {
@@ -33,19 +34,25 @@
 
 - (void)dealloc
     {
-    [document release];
-    document = NULL;
-    [attachments release];
-    attachments = NULL;
+    [title release];
+    title = NULL;
+    [body release];
+    body = NULL;
     [tags release];
     tags = NULL;
+    [attachments release];
+    attachments = NULL;
     //
     [super dealloc];
     }
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler
     {
-    NSMutableDictionary *theDocument = [[self.document mutableCopy] autorelease];
+    NSMutableDictionary *theDocument = [NSMutableDictionary dictionary];
+    
+    [theDocument setObject:@"posting" forKey:@"type"];
+    [theDocument setObject:self.title forKey:@"title"];
+    [theDocument setObject:self.body  forKey:@"body"];
     
     CLLocation *theLocation = [CBetterLocationManager instance].location;
     if (theLocation && theLocation.stale == NO)
