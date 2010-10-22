@@ -348,7 +348,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
     {
-//    NSLog(@"%@", info);
+    NSLog(@"%@", info);
     id theMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([theMediaType isEqualToString:(id)kUTTypeImage])
         {
@@ -364,6 +364,29 @@
         NSLog(@"%d", [theJPEGRepresentation length]);
         self.posting.attachments = [NSArray arrayWithObjects:
             [[[CCouchDBAttachment alloc] initWithIdentifier:@"image.jpg" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
+            NULL];
+        }
+    else if ([theMediaType isEqualToString:(id)kUTTypeMovie])
+        {
+        // public.movie
+        NSLog(@"%@", info);
+
+//    NSLog(@"%@", UTTypeCopyPreferredTagWithClass(kUTTypeMovie, kUTTagClassMIMEType));
+
+
+        NSLog(@"%@", UTTypeCopyDeclaration(kUTTypeMovie));
+
+        NSURL *theMediaURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        NSData *theData = NULL;
+        if ([theMediaURL isFileURL])
+            {
+            NSError *theError = NULL;
+            theData = [NSData dataWithContentsOfURL:theMediaURL options:NSDataReadingMapped error:&theError];
+            NSLog(@"%@", theError);
+            }
+
+        self.posting.attachments = [NSArray arrayWithObjects:
+            [[[CCouchDBAttachment alloc] initWithIdentifier:@"movie.mov" contentType:@"video/quicktime" data:theData] autorelease],
             NULL];
         }
     

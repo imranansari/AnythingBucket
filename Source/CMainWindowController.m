@@ -8,6 +8,8 @@
 
 #import "CMainWindowController.h"
 
+#import <MobileCoreServices/MobileCoreServices.h>
+
 #import "CAnythingDBServer.h"
 
 @interface CMainWindowController () <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -30,7 +32,7 @@
     }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-    {    
+    {                        
     [window makeKeyAndVisible];
     
     [CAnythingDBServer sharedInstance];

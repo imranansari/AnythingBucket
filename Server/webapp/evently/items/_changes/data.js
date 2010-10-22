@@ -3,13 +3,27 @@ function(data) {
 	return {
 		items : data.rows.map(function(r) {
 			p = r.value
+			p.attachments = [];
 			if ('_attachments' in p)
 				{
-				p.attachment = p._id + '/' + 'attachment';
+				for (var key in p._attachments)
+					{
+					var theAttachment = p._attachments[key];
+					var theLink = '/anything-db/' + p._id + '/' + key;
+					theAttachment["link"] = theLink;
+					if (theAttachment.content_type == "image/jpeg")
+						{
+						theAttachment["markup"] = "<img width=100 height=100 src=" + theLink + "/>";
+						}
+					else if (theAttachment.content_type == "video/quicktime")
+						{
+						theAttachment["markup"] = "<video controls=\"controls\" width=100 height=100 src=" + theLink + "/>";
+						}
+					p.attachments.push(theAttachment);
+					}
 				}
 			else
 				{
-				p.attachment = null;
 				}
 			if ('location' in p)
 				{
