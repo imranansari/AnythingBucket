@@ -1,0 +1,15 @@
+Bump API Installation
+=====================
+1. Create your Xcode project
+
+2. Add the following to your project:
+   - libBump.a (a fat binary that works on both the device and the simulator) 
+   - Bump.h
+   - BumpContact.h
+   - copy the content in the Bump_Resources directory into your Xcode project Resources group
+
+3. Add CoreLocation, AudioToolbox, UIKit, Foundation, CoreGraphics frameworks
+
+4. Optionally add the Localizations folder to your project if you would like to support multiple languages. See the readme file in Localizations for more info.
+
+Now you're ready to use Bump in your code.  Please refer to the Bump API user documentation for details.
