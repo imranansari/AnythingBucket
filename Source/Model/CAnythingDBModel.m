@@ -30,6 +30,10 @@ static CAnythingDBModel *gInstance = NULL;
     if ((self = [super init]) != NULL)
         {
         self.name = @"Model";
+        self.storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+            [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+            NULL];
         }
     return(self);
     }

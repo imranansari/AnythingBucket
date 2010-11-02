@@ -9,6 +9,7 @@
 #import <CoreData/CoreData.h>
 
 #pragma mark begin emogenerator forward declarations
+@class CAttachment;
 #pragma mark end emogenerator forward declarations
 
 /** Posting */
@@ -20,11 +21,17 @@
 + (NSString *)entityName;
 
 // Attributes
-@property (readwrite, retain) NSString *body;
-@property (readwrite, retain) NSString *tags;
+@property (readwrite, retain) id location;
 @property (readwrite, retain) NSString *title;
+@property (readwrite, retain) NSDate *created;
+@property (readwrite, retain) NSDate *modified;
+@property (readwrite, retain) NSString *body;
+@property (readwrite, retain) id tags;
+@property (readwrite, retain) NSString *externalID;
 
 // Relationships
+@property (readonly, retain) NSMutableSet *attachments;
+- (NSMutableSet *)attachments;
 
 #pragma mark end emogenerator accessors
 

@@ -9,6 +9,7 @@
 #import "CPosting.h"
 
 #pragma mark begin emogenerator forward declarations
+#import "CAttachment.h"
 #pragma mark end emogenerator forward declarations
 
 @implementation CPosting
@@ -20,11 +21,26 @@
 return(@"Posting");
 }
 
+@dynamic location;
+
+@dynamic title;
+
+@dynamic created;
+
+@dynamic attachments;
+
+- (NSMutableSet *)attachments
+{
+return([self mutableSetValueForKey:@"attachments"]);
+}
+
+@dynamic modified;
+
 @dynamic body;
 
 @dynamic tags;
 
-@dynamic title;
+@dynamic externalID;
 
 #pragma mark end emogenerator accessors
 
