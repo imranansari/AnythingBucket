@@ -14,4 +14,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 
+- (IBAction)bump:(id)inSender;
+
 @end

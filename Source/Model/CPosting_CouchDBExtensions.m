@@ -15,35 +15,28 @@
 #import "CCouchDBDatabase.h"
 #import "CCouchDBAttachment.h"
 #import "CCouchDBDocument.h"
+#import "CAttachment.h"
+#import "CObjectTranscoder.h"
 
 @implementation CPosting (CPosting_CouchDBExtensions)
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler
     {
-    NSMutableDictionary *theDocument = [NSMutableDictionary dictionary];
+    CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
+    id theDocument = [theTranscoder dictionaryForObject:self error:NULL];
     
-    [theDocument setObject:@"posting" forKey:@"type"];
-    [theDocument setObject:self.title forKey:@"title"];
-    [theDocument setObject:self.body  forKey:@"body"];
-    
-    CLLocation *theLocation = [CBetterLocationManager instance].location;
-    if (theLocation && theLocation.stale == NO)
-        {
-        NSMutableDictionary *theLocationDictionary = [NSMutableDictionary dictionary];
-        [theLocationDictionary setObject:[NSNumber numberWithDouble:theLocation.coordinate.latitude] forKey:@"latitude"];
-        [theLocationDictionary setObject:[NSNumber numberWithDouble:theLocation.coordinate.longitude] forKey:@"longitude"];
+    theDocument = [[theDocument mutableCopy] autorelease];
 
-        [theDocument setObject:theLocationDictionary forKey:@"location"];
-        }
-        
-    [theDocument setObject:self.tags forKey:@"tags"];
-    
+    [theDocument setObject:@"posting" forKey:@"type"];
+
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
         
-//        for (CCouchDBAttachment *theAttachment in self.attachments)
-//            {
-//            [inDocument addAttachment:theAttachment];
-//            }
+        for (CAttachment *theAttachment in self.attachments)
+            {
+            CCouchDBAttachment *theCouchAttachment = [[[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data] autorelease];
+            
+            [inDocument addAttachment:theCouchAttachment];
+            }
 
         if (inSuccessHandler)
             {

@@ -11,6 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "CAnythingDBServer.h"
+#import "CBumpManager.h"
 
 @interface CMainWindowController () <UIApplicationDelegate, UITabBarControllerDelegate>
 @end
@@ -34,9 +35,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     {                        
     [window makeKeyAndVisible];
-    
     [CAnythingDBServer sharedInstance];
-    return YES;
+	
+    return(YES);
     }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -55,10 +56,14 @@
     {
     }
 
-
 - (void)applicationWillTerminate:(UIApplication *)application
     {
     }
+
+- (IBAction)bump:(id)inSender
+	{
+	[[CBumpManager sharedInstance] bump:NULL];
+	}
 
 @end
 

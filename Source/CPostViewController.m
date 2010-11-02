@@ -12,6 +12,8 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import "NSManagedObjectContext_Extensions.h"
+
 #import "CBetterLocationManager.h"
 #import "CUserNotificationManager.h"
 #import "CAnythingDBServer.h"
@@ -26,6 +28,7 @@
 #import "CMailTableViewCell.h"
 #import "CPosting_CouchDBExtensions.h"
 #import "CAnythingDBModel.h"
+#import "CAttachment.h"
 
 #define UNNULLIFY(x) x == [NSNull null] ? NULL : x;
 
@@ -76,8 +79,23 @@
     {
     if (posting == NULL)
         {
-        CPosting *thePosting = [NSEntityDescription insertNewObjectForEntityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
-        posting = [thePosting retain];
+        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+        NSError *theError = NULL;
+        id theBlock = ^ (void) {
+            CPosting *thePosting = [NSEntityDescription insertNewObjectForEntityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
+            
+            CLLocation *theLocation = [CBetterLocationManager instance].location;
+            posting.location = theLocation;
+            
+            posting = [thePosting retain];
+            };
+        if ([theContext performTransaction:theBlock error:&theError])
+            {
+            NSLog(@"Error: %@", theError);
+            }
+        
+        
+        
         }
     return(posting);
     }
@@ -103,6 +121,8 @@
     
 - (void)viewWillAppear:(BOOL)animated
     {
+    [super viewWillAppear:animated];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(betterLocationManagerDidUpdateToLocationNotification:) name:kBetterLocationManagerDidUpdateToLocationNotification object:[CBetterLocationManager instance]];
     [[CBetterLocationManager instance] startUpdatingLocation:NULL];
 
@@ -127,8 +147,18 @@
     {
     [super viewWillDisappear:animated];
 
-    self.posting.title = self.titleField.text;
-    self.posting.body = self.textView.text;
+    NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+    id theTransactionBlock = ^ (void) {
+        self.posting.title = self.titleField.text;
+        self.posting.body = self.textView.text;
+        };
+    NSError *theError = NULL;
+    if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
+        {
+        NSLog(@"Error: %@", theError);
+        }
+
+
     
     [self stopRespondingToKeyboardAppearance];
     }
@@ -225,7 +255,7 @@
     
 - (void)betterLocationManagerDidUpdateToLocationNotification:(NSNotification *)inNotification
     {
-//    NSLog(@"%@", inNotification.userInfo);
+    self.posting.location = [CBetterLocationManager instance].location;
     }
     
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
@@ -351,7 +381,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
     {
-    NSLog(@"%@", info);
+//    NSLog(@"%@", info);
     id theMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([theMediaType isEqualToString:(id)kUTTypeImage])
         {
@@ -365,12 +395,24 @@
 
         NSData *theJPEGRepresentation = UIImageJPEGRepresentation(theImage, 0.8);
         NSLog(@"%d", [theJPEGRepresentation length]);
-//        self.posting.attachments = [NSArray arrayWithObjects:
-//            [[[CCouchDBAttachment alloc] initWithIdentifier:@"image.jpg" contentType:@"image/jpeg" data:theJPEGRepresentation] autorelease],
-//            NULL];
+        
+        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+        id theTransactionBlock = ^ (void) {
+            CAttachment *theAttachment = [NSEntityDescription insertNewObjectForEntityForName:[CAttachment entityName] inManagedObjectContext:theContext];
+            theAttachment.identifier = @"image.jpg";
+            theAttachment.contentType = @"image/jpeg";
+            theAttachment.data = theJPEGRepresentation;
+            [self.posting.attachments addObject:theAttachment];
+            };
+        NSError *theError = NULL;
+        if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
+            {
+            NSLog(@"Error: %@", theError);
+            }
         }
     else if ([theMediaType isEqualToString:(id)kUTTypeMovie])
         {
+        // NSCache
         // public.movie
 //        NSLog(@"%@", info);
 

@@ -38,7 +38,7 @@ return(gInstance);
     {
     if ((self = [super initWithSession:NULL URL:[NSURL URLWithString:@"http://touchcode.couchone.com:5984"]]) != NULL)
         {
-		database = [self databaseNamed:@"anything-db"];
+		database = [[self databaseNamed:@"anything-db"] retain];
 		
         if (database == NULL)
             {

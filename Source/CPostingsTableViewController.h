@@ -6,12 +6,9 @@
 //  Copyright (c) 2010 toxicsoftware.com. All rights reserved.
 //
 
-#import "CTableViewController.h"
+#import "CFetchedResultsTableViewController.h"
 
-@interface CPostingsTableViewController : CTableViewController {
-    NSMutableArray *postings;
+@interface CPostingsTableViewController : CFetchedResultsTableViewController {
 }
-
-@property (readwrite, nonatomic, retain) NSMutableArray *postings;
 
 @end
