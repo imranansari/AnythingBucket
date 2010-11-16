@@ -136,21 +136,6 @@
 		4549A0EC126B7284003F1DBE /* CXMLNode_XPathExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45499E26126B7283003F1DBE /* CXMLNode_XPathExtensions.m */; };
 		4549A3AD126B863C003F1DBE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4549A3AC126B863C003F1DBE /* MobileCoreServices.framework */; };
 		455136F412823EAD0087EDD0 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 455136F312823EAD0087EDD0 /* Icon.png */; };
-		45531445129206B900A32988 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		45531446129206B900A32988 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		45531447129206B900A32988 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
-		4553144C129206B900A32988 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4553144A129206B900A32988 /* InfoPlist.strings */; };
-		4553144E129206B900A32988 /* AnythingBucket2-main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4553144D129206B900A32988 /* AnythingBucket2-main.m */; };
-		45531451129206B900A32988 /* AnythingBucket2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45531450129206B900A32988 /* AnythingBucket2AppDelegate.m */; };
-		45531454129206B900A32988 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45531452129206B900A32988 /* MainWindow.xib */; };
-		45531457129206B900A32988 /* AnythingBucket2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45531456129206B900A32988 /* AnythingBucket2ViewController.m */; };
-		4553145A129206B900A32988 /* AnythingBucket2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45531458129206B900A32988 /* AnythingBucket2ViewController.xib */; };
-		45531462129206B900A32988 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		45531463129206B900A32988 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		45531464129206B900A32988 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765070DF74369002DB57D /* CoreGraphics.framework */; };
-		45531468129206B900A32988 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 45531467129206B900A32988 /* InfoPlist.strings */; };
-		4553146A129206B900A32988 /* AnythingBucket2Tests.h in Resources */ = {isa = PBXBuildFile; fileRef = 45531469129206B900A32988 /* AnythingBucket2Tests.h */; };
-		4553146C129206B900A32988 /* AnythingBucket2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4553146B129206B900A32988 /* AnythingBucket2Tests.m */; };
 		45764EAB126AACAF00AE9F2F /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45764E7E126AACAF00AE9F2F /* CKVOBlockNotificationHelper.m */; };
 		45764EAC126AACAF00AE9F2F /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 45764E80126AACAF00AE9F2F /* NSObject_KVOBlockNotificationExtensions.m */; };
 		457B57E4128128CA00AF14B1 /* CAnalyticsCouchDBMessenger.m in Sources */ = {isa = PBXBuildFile; fileRef = 457B5786128128C900AF14B1 /* CAnalyticsCouchDBMessenger.m */; };
@@ -522,20 +507,14 @@
 		45499E2A126B7283003F1DBE /* TouchXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchXML.h; sourceTree = "<group>"; };
 		4549A3AC126B863C003F1DBE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		455136F312823EAD0087EDD0 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		45531443129206B900A32988 /* AnythingBucket2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnythingBucket2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45531448129206B900A32988 /* AnythingBucket2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AnythingBucket2-Info.plist"; path = "../AnythingBucket2-Info.plist"; sourceTree = "<group>"; };
 		45531449129206B900A32988 /* AnythingBucket2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnythingBucket2-Prefix.pch"; sourceTree = "<group>"; };
 		4553144B129206B900A32988 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4553144D129206B900A32988 /* AnythingBucket2-main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "AnythingBucket2-main.m"; sourceTree = "<group>"; };
-		4553144F129206B900A32988 /* AnythingBucket2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnythingBucket2AppDelegate.h; sourceTree = "<group>"; };
-		45531450129206B900A32988 /* AnythingBucket2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnythingBucket2AppDelegate.m; sourceTree = "<group>"; };
 		45531453129206B900A32988 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		45531455129206B900A32988 /* AnythingBucket2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnythingBucket2ViewController.h; sourceTree = "<group>"; };
-		45531456129206B900A32988 /* AnythingBucket2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnythingBucket2ViewController.m; sourceTree = "<group>"; };
 		45531459129206B900A32988 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = ../en.lproj/AnythingBucket2ViewController.xib; sourceTree = "<group>"; };
-		45531461129206B900A32988 /* AnythingBucket2Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnythingBucket2Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		45531465129206B900A32988 /* AnythingBucket2Tests-Info.plist */ = {isa = PBXFileReference; name = "AnythingBucket2Tests-Info.plist"; path = "../AnythingBucket2Tests-Info.plist"; sourceTree = "<group>"; };
-		45531466129206B900A32988 /* AnythingBucket2Tests-Prefix.pch */ = {isa = PBXFileReference; path = "AnythingBucket2Tests-Prefix.pch"; sourceTree = "<group>"; };
+		45531465129206B900A32988 /* AnythingBucket2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AnythingBucket2Tests-Info.plist"; path = "../AnythingBucket2Tests-Info.plist"; sourceTree = "<group>"; };
+		45531466129206B900A32988 /* AnythingBucket2Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnythingBucket2Tests-Prefix.pch"; sourceTree = "<group>"; };
 		45531467129206B900A32988 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = ../en.lproj/AnythingBucket2Tests/InfoPlist.strings; sourceTree = "<group>"; };
 		45531469129206B900A32988 /* AnythingBucket2Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnythingBucket2Tests.h; sourceTree = "<group>"; };
 		4553146B129206B900A32988 /* AnythingBucket2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnythingBucket2Tests.m; sourceTree = "<group>"; };
@@ -808,26 +787,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		45531440129206B900A32988 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45531445129206B900A32988 /* UIKit.framework in Frameworks */,
-				45531446129206B900A32988 /* Foundation.framework in Frameworks */,
-				45531447129206B900A32988 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4553145D129206B900A32988 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45531462129206B900A32988 /* UIKit.framework in Frameworks */,
-				45531463129206B900A32988 /* Foundation.framework in Frameworks */,
-				45531464129206B900A32988 /* CoreGraphics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -836,8 +795,6 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* AnythingBucket.app */,
 				450825B01280F4FA00196398 /* Unit Tests.octest */,
-				45531443129206B900A32988 /* AnythingBucket2.app */,
-				45531461129206B900A32988 /* AnythingBucket2Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -854,7 +811,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				450825B11280F4FA00196398 /* Unit Tests-Info.plist */,
-				4553143D129206B900A32988 /* Classes */,
 				4553143E129206B900A32988 /* Other Sources */,
 				4553145B129206B900A32988 /* Tests */,
 			);
@@ -1398,17 +1354,6 @@
 			path = Tidy;
 			sourceTree = "<group>";
 		};
-		4553143D129206B900A32988 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				4553144F129206B900A32988 /* AnythingBucket2AppDelegate.h */,
-				45531450129206B900A32988 /* AnythingBucket2AppDelegate.m */,
-				45531455129206B900A32988 /* AnythingBucket2ViewController.h */,
-				45531456129206B900A32988 /* AnythingBucket2ViewController.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		4553143E129206B900A32988 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1880,41 +1825,6 @@
 			productReference = 450825B01280F4FA00196398 /* Unit Tests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		45531442129206B900A32988 /* AnythingBucket2 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 45531471129206B900A32988 /* Build configuration list for PBXNativeTarget "AnythingBucket2" */;
-			buildPhases = (
-				4553143F129206B900A32988 /* Sources */,
-				45531440129206B900A32988 /* Frameworks */,
-				45531441129206B900A32988 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AnythingBucket2;
-			productName = AnythingBucket2;
-			productReference = 45531443129206B900A32988 /* AnythingBucket2.app */;
-			productType = "com.apple.product-type.application";
-		};
-		45531460129206B900A32988 /* AnythingBucket2Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 45531476129206B900A32988 /* Build configuration list for PBXNativeTarget "AnythingBucket2Tests" */;
-			buildPhases = (
-				4553145C129206B900A32988 /* Sources */,
-				4553145D129206B900A32988 /* Frameworks */,
-				4553145E129206B900A32988 /* Resources */,
-				4553145F129206B900A32988 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AnythingBucket2Tests;
-			productName = AnythingBucket2Tests;
-			productReference = 45531461129206B900A32988 /* AnythingBucket2Tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1954,8 +1864,6 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* AnythingBucket */,
 				450825AF1280F4FA00196398 /* Unit Tests */,
-				45531442129206B900A32988 /* AnythingBucket2 */,
-				45531460129206B900A32988 /* AnythingBucket2Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -2034,42 +1942,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		45531441129206B900A32988 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4553144C129206B900A32988 /* InfoPlist.strings in Resources */,
-				45531454129206B900A32988 /* MainWindow.xib in Resources */,
-				4553145A129206B900A32988 /* AnythingBucket2ViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4553145E129206B900A32988 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45531468129206B900A32988 /* InfoPlist.strings in Resources */,
-				4553146A129206B900A32988 /* AnythingBucket2Tests.h in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		450825AE1280F4FA00196398 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		4553145F129206B900A32988 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2285,24 +2161,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4553143F129206B900A32988 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4553144E129206B900A32988 /* AnythingBucket2-main.m in Sources */,
-				45531451129206B900A32988 /* AnythingBucket2AppDelegate.m in Sources */,
-				45531457129206B900A32988 /* AnythingBucket2ViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4553145C129206B900A32988 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4553146C129206B900A32988 /* AnythingBucket2Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -2485,145 +2343,6 @@
 			};
 			name = Release;
 		};
-		45531472129206B900A32988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnythingBucket2-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "AnythingBucket2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		45531473129206B900A32988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnythingBucket2-Prefix.pch";
-				INFOPLIST_FILE = "AnythingBucket2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		45531474129206B900A32988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = AnythingBucket2;
-			};
-			name = Debug;
-		};
-		45531475129206B900A32988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				PRODUCT_NAME = AnythingBucket2;
-			};
-			name = Release;
-		};
-		45531477129206B900A32988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnythingBucket2Tests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
-				INFOPLIST_FILE = "AnythingBucket2Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		45531478129206B900A32988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnythingBucket2Tests-Prefix.pch";
-				INFOPLIST_FILE = "AnythingBucket2Tests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
-				OTHER_LDFLAGS = (
-					"-framework",
-					SenTestingKit,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
-		45531479129206B900A32988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = AnythingBucket2Tests;
-			};
-			name = Debug;
-		};
-		4553147A129206B900A32988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				PRODUCT_NAME = AnythingBucket2Tests;
-			};
-			name = Release;
-		};
-		4553147B129206B900A32988 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				PRODUCT_NAME = AnythingBucket2Tests;
-			};
-			name = Debug;
-		};
-		4553147C129206B900A32988 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				PRODUCT_NAME = AnythingBucket2Tests;
-			};
-			name = Release;
-		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2674,30 +2393,6 @@
 			buildConfigurations = (
 				450825B21280F4FB00196398 /* Debug */,
 				450825B31280F4FB00196398 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		45531471129206B900A32988 /* Build configuration list for PBXNativeTarget "AnythingBucket2" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				45531472129206B900A32988 /* Debug */,
-				45531473129206B900A32988 /* Release */,
-				45531474129206B900A32988 /* Debug */,
-				45531475129206B900A32988 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		45531476129206B900A32988 /* Build configuration list for PBXNativeTarget "AnythingBucket2Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				45531477129206B900A32988 /* Debug */,
-				45531478129206B900A32988 /* Release */,
-				45531479129206B900A32988 /* Debug */,
-				4553147A129206B900A32988 /* Release */,
-				4553147B129206B900A32988 /* Debug */,
-				4553147C129206B900A32988 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
