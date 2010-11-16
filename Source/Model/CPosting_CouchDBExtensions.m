@@ -14,16 +14,18 @@
 #import "CLLocation_Extensions.h"
 #import "CCouchDBDatabase.h"
 #import "CCouchDBAttachment.h"
+#import "CCouchDBSession.h"
 #import "CCouchDBDocument.h"
 #import "CAttachment.h"
 #import "CObjectTranscoder.h"
+#import "CURLOperation.h"
 
 @implementation CPosting (CPosting_CouchDBExtensions)
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler
     {
     CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
-    id theDocument = [theTranscoder dictionaryForObject:self error:NULL];
+    id theDocument = [theTranscoder transcodedObjectForObject:self error:NULL];
     
     theDocument = [[theDocument mutableCopy] autorelease];
 
@@ -31,6 +33,9 @@
 
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
         
+		self.externalID = inDocument.identifier;
+
+		
         for (CAttachment *theAttachment in self.attachments)
             {
             CCouchDBAttachment *theCouchAttachment = [[[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data] autorelease];
@@ -44,7 +49,10 @@
             }
         };
     
-    [[CAnythingDBServer sharedInstance].database createDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];
+    CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].database operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];
+	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
+	
+	
     }
 
 @end

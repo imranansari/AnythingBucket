@@ -8,7 +8,19 @@
 
 #import "CAnythingDBServer.h"
 
+#import "NSManagedObjectContext_Extensions.h"
+
 #import "CouchDBClientConstants.h"
+#import "CAnythingDBServer.h"
+#import "CCouchDBDatabase.h"
+#import "CCouchDBDocument.h"
+#import "CCouchDBDesignDocument.h"
+#import "CPosting.h"
+#import "CAnythingDBModel.h"
+#import "CURLOperation.h"
+#import "CCouchDBSession.h"
+#import "CCouchDBChangeSet.h"
+#import "CURLOperation.h"
 
 static CAnythingDBServer *gInstance = NULL;
 
@@ -48,10 +60,12 @@ return(gInstance);
             CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
                 if (inError.domain == kCouchErrorDomain && inError.code == CouchDBErrorCode_NoDatabase)
                     {
-                    [self createDatabaseNamed:@"anything-db" withSuccessHandler:theSuccessHandler failureHandler:NULL];
+                    CURLOperation *theOperation = [self operationToCreateDatabaseNamed:@"anything-db" withSuccessHandler:theSuccessHandler failureHandler:NULL];
+					[self.session.operationQueue addOperation:theOperation];
                     }
                 };
-            [self fetchDatabaseNamed:@"anything-db" withSuccessHandler:theSuccessHandler failureHandler:theFailureHandler];
+            CURLOperation *theOperation = [self operationToCreateDatabaseNamed:@"anything-db" withSuccessHandler:theSuccessHandler failureHandler:theFailureHandler];
+			[self.session.operationQueue addOperation:theOperation];
             }
         }
     return(self);
@@ -64,6 +78,59 @@ return(gInstance);
     //
     [super dealloc];
     }
+
+#pragma mark -
+
+- (void)fetchChangedPostings
+	{
+    CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
+        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+        
+        id theTransaction = ^(void) {
+		
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocuments];
+			NSError *theError = NULL;
+			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
+			for (CPosting *thePosting in theDeletedPostings)
+				{
+				[theContext deleteObject:thePosting];
+				}
+				
+			
+		
+//            NSError *theError = NULL;
+//            for (CCouchDBDocument *theDocument in inParameter)
+//                {
+//                NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
+//                BOOL theWasCreatedFlag = NO;
+//                CPosting *thePosting = [theContext fetchObjectOfEntityForName:[CPosting entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
+//                if (theWasCreatedFlag == YES)
+//                    {
+//                    thePosting.externalID = theDocument.identifier;
+//                    }
+//					
+//				NSString *theTitle = [theDocument.content objectForKey:@"title"];
+//				if (theTitle != NULL && theTitle != (id)[NSNull null])
+//					{
+//					thePosting.title = [theDocument.content objectForKey:@"title"];
+//					}
+//                }
+            };
+        
+        NSError *theError = NULL;
+        if ([theContext performTransaction:theTransaction error:&theError] == NO && theError != NULL)
+            {
+            NSLog(@"ERROR OCCURED: %@", theError);
+            }
+        };
+
+	CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].database operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
+	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
+	}
+
+- (void)fetchPostings:(NSSet *)inDocumentIdentifiers
+	{
+	}
 
 
 @end

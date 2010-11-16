@@ -39,8 +39,6 @@ static CBumpManager *gInstance = NULL;
 		{
 		bump = [[Bump alloc] init];
 		[bump configAPIKey:BUMP_API_KEY];
-		
-		NSLog(@"KEY: %@", BUMP_API_KEY);
 		bump.delegate = self;
 		}
 	return(self);
@@ -65,6 +63,7 @@ static CBumpManager *gInstance = NULL;
 - (void)bumpDidConnect
 	{
 	NSLog(@"DID CONNECT");
+	[self.bump send:[@"Hello world" dataUsingEncoding:NSUTF8StringEncoding]];
 	}
 
 - (void)bumpDidDisconnect:(BumpDisconnectReason)reason
@@ -80,6 +79,9 @@ static CBumpManager *gInstance = NULL;
 - (void)bumpDataReceived:(NSData *)chunk
 	{
 	NSLog(@"bumpDataReceived: %@", chunk);
+	NSString *theString = [[[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding] autorelease];
+	[[[[UIAlertView alloc] initWithTitle:NULL message:theString delegate:NULL cancelButtonTitle:@"OK" otherButtonTitles:NULL] autorelease] show];
+	
 	}
 	
 - (void)bumpSendSuccess

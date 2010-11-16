@@ -33,7 +33,9 @@
     }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-    {                        
+    {
+	NSLog(@"%@", launchOptions);
+							                        
     [window makeKeyAndVisible];
     [CAnythingDBServer sharedInstance];
 	

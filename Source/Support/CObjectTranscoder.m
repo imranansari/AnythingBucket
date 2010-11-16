@@ -12,6 +12,13 @@
 
 static const char* getPropertyType(objc_property_t property);
 
+@interface CObjectTranscoder ()
+- (id)transcodedObjectForMappingObject:(id)inObject error:(NSError **)outError;
+- (id)transcodedObjectForArray:(NSArray *)inArray error:(NSError **)outError;
+@end
+
+#pragma mark -
+
 @implementation CObjectTranscoder
 
 @synthesize allowedKeys;
@@ -37,7 +44,51 @@ static const char* getPropertyType(objc_property_t property);
         }
     }
 
-- (NSDictionary *)dictionaryForObject:(id)inObject error:(NSError **)outError
+- (id)transcodedObjectForObject:(id)inObject error:(NSError **)outError
+	{
+	if ([inObject isKindOfClass:[NSString class]])
+		{
+		return(inObject);
+		}
+	else if ([inObject isKindOfClass:[NSURL class]])
+		{
+		return(inObject);
+		}
+	else if ([inObject isKindOfClass:[NSNumber class]])
+		{
+		return(inObject);
+		}
+	else if ([inObject isKindOfClass:[NSDate class]])
+		{
+		return(inObject);
+		}
+	else if ([inObject isKindOfClass:[NSData class]])
+		{
+		return(inObject);
+		}
+	else if (inObject == [NSNull null])
+		{
+		return(NULL);
+		}
+	else if ([inObject isKindOfClass:[NSArray class]])
+		{
+		return([self transcodedObjectForArray:inObject error:outError]);
+		}
+	else if ([inObject isKindOfClass:[NSSet class]])
+		{
+		return([self transcodedObjectForArray:[inObject allObjects] error:outError]);
+		}
+	else if ([inObject isKindOfClass:[NSDictionary class]])
+		{
+		return([self transcodedObjectForMappingObject:inObject error:outError]);
+		}
+	else
+		{
+		return([self transcodedObjectForMappingObject:inObject error:outError]);
+		}
+	}
+
+- (id)transcodedObjectForMappingObject:(id)inObject error:(NSError **)outError
     {
     NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
     
@@ -81,52 +132,10 @@ static const char* getPropertyType(objc_property_t property);
                 }
             }
             
-        if (theTranscodedValue == NULL && (theValue == NULL || theValue == [NSNull null]))
-            {
-            theTranscodedValue = [NSNull null];
-            }
-
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSString class]])
-            {
-            theTranscodedValue = theValue;
-            }
-
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSNumber class]])
-            {
-            theTranscodedValue = theValue;
-            }
-
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSDate class]])
-            {
-            theTranscodedValue = theValue;
-            }
-
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSURL class]])
-            {
-            theTranscodedValue = theValue;
-            }
-
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSArray class]])
-            {
-            // TODO
-            theTranscodedValue = [NSArray array];
-            }
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSSet class]])
-            {
-            // TODO
-            theTranscodedValue = [NSSet set];
-            }
-        if (theTranscodedValue == NULL && [theValue isKindOfClass:[NSDictionary class]])
-            {
-            // TODO
-            theTranscodedValue = [NSDictionary dictionary];
-            }
-        
         if (theTranscodedValue == NULL)
             {
-            NSLog(@"Treating as compound: %@", NSStringFromClass([theValue class]));
-            CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
-            theTranscodedValue = [theTranscoder dictionaryForObject:theValue error:NULL];
+			// TODO make null optionsal.
+            theTranscodedValue = [self transcodedObjectForObject:theValue error:outError];
             }
 
         [theDictionary setValue:theTranscodedValue forKey:theKey];
@@ -135,6 +144,25 @@ static const char* getPropertyType(objc_property_t property);
     return(theDictionary);
     }
     
+#pragma mark -
+
+- (id)transcodedObjectForArray:(NSArray *)inArray error:(NSError **)outError
+	{
+	NSMutableArray *theTranscodedArray = [NSMutableArray arrayWithCapacity:[inArray count]];
+	for (id theValue in inArray)
+		{
+		NSError *theError = NULL;
+		id theTranscodedValue = [self transcodedObjectForObject:theValue error:&theError];
+		[theTranscodedArray addObject:theTranscodedValue];
+		}
+	
+	return(theTranscodedArray);
+	}
+
+- (NSDictionary *)transcodedObjectForDictionary:(NSDictionary *)inDictionary error:(NSError **)outError
+	{
+	return(NULL);
+	}
 
 @end
 

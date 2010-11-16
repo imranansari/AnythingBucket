@@ -14,8 +14,9 @@
 
 }
 
-@property (readwrite, nonatomic, retain) IBOutlet UITextField *titleField;
-@property (readwrite, nonatomic, retain) IBOutlet UITextView *textView;
+@property (readwrite, nonatomic, retain) IBOutlet UITextField *tagsTextField;
+@property (readwrite, nonatomic, retain) IBOutlet UITextField *subjectTextField;
+@property (readwrite, nonatomic, retain) IBOutlet UITextView *bodyTextView;
 @property (readwrite, nonatomic, retain) IBOutlet UIToolbar *inputAccessoryView;
 @property (readwrite, nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
 @property (readwrite, nonatomic, retain) CPosting *posting;

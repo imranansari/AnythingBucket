@@ -42,8 +42,9 @@
 
 @implementation CPostViewController
 
-@synthesize titleField;
-@synthesize textView;
+@synthesize tagsTextField;
+@synthesize subjectTextField;
+@synthesize bodyTextView;
 @synthesize inputAccessoryView;
 @synthesize doneButton;
 @synthesize posting;
@@ -63,8 +64,7 @@
 
 - (void)dealloc
     {    
-    [textView release];
-    textView = NULL;
+	// TODO
 
     [inputAccessoryView release];
     inputAccessoryView = NULL;
@@ -75,6 +75,8 @@
     [super dealloc];
     }
     
+#pragma mark -	
+
 - (CPosting *)posting
     {
     if (posting == NULL)
@@ -93,18 +95,17 @@
             {
             NSLog(@"Error: %@", theError);
             }
-        
-        
-        
         }
     return(posting);
     }
 
+#pragma mark -
+
+#pragma mark -	
+
 - (void)viewDidLoad
     {
     [super viewDidLoad];
-    
-    NSLog(@"%@", self.posting);
     //
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)] autorelease];
     }
@@ -114,7 +115,7 @@
     [super viewDidLoad];
     //
     //
-    self.textView = NULL;
+    self.bodyTextView = NULL;
     self.inputAccessoryView = NULL;
     self.doneButton = NULL;
     }
@@ -149,16 +150,15 @@
 
     NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
     id theTransactionBlock = ^ (void) {
-        self.posting.title = self.titleField.text;
-        self.posting.body = self.textView.text;
+        self.posting.title = self.subjectTextField.text;
+        self.posting.body = self.bodyTextView.text;
+		self.posting.tags = [self.tagsTextField.text componentsSeparatedByString:@","];
         };
     NSError *theError = NULL;
     if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
         {
         NSLog(@"Error: %@", theError);
         }
-
-
     
     [self stopRespondingToKeyboardAppearance];
     }
@@ -185,53 +185,60 @@
         {
         case 0:
             {
-            CMailTableViewCell *theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
-            theCell.textLabel.text = @"Tags:";
-//            theCell.textField.text = [self.posting objectForKey:@"subject"];
+			CMailTableViewCell *theCell = (id)[self.tableView dequeueReusableCellWithIdentifier:@"TAGS_CELL"];
+			if (theCell == NULL)
+				{
+				theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TAGS_CELL"] autorelease];
+				theCell.textLabel.text = @"Tags:";
+				theCell.textField.text = [self.posting.tags componentsJoinedByString:@","];
+				self.tagsTextField = theCell.textField;
+				}
             theReturnedCell = theCell;
             }
             break;
         case 1:
             {
-            CMailTableViewCell *theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
-            self.titleField = theCell.textField;
-            theCell.textLabel.text = @"Subject:";
-            theCell.textField.text = self.posting.title;
+			CMailTableViewCell *theCell = (id)[self.tableView dequeueReusableCellWithIdentifier:@"SUBJECT_CELL"];
+			if (theCell == NULL)
+				{
+				theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SUBJECT_CELL"] autorelease];
+				theCell.textLabel.text = @"Subject:";
+				theCell.textField.text = self.posting.title;
+				self.subjectTextField = theCell.textField;
+				}
             theReturnedCell = theCell;
             }
             break;
         case 2:
             {
-            theReturnedCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NULL] autorelease];
-            theReturnedCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            if (self.textView == NULL)
-                {
-                self.textView = [[[UITextView alloc] initWithFrame:theReturnedCell.contentView.bounds] autorelease];
-                self.textView.text = self.posting.body;
-                self.textView.scrollEnabled = NO;
-                self.textView.showsVerticalScrollIndicator = NO;
-                
-                self.textView.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
-                self.textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //            self.textView.backgroundColor = [UIColor redColor];
-
-//                self.textView.delegate = self;
-                
-                [[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self.textView queue:NULL usingBlock:^(NSNotification *arg1) {
-                    CGSize theSize = [self.textView sizeThatFits:(CGSize){320, 99999}];
-//                    NSLog(@"%@", NSStringFromCGSize(theSize));
-                    if (theSize.height > 67)
-                        {
-                        [self.tableView beginUpdates];
-                        self.textViewRowHeight = theSize.height;
-                        [self.tableView endUpdates];
-                        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-                        }
-                    }];
-                
-                [theReturnedCell.contentView addSubview:self.textView];
-                }
-            }
+			UITableViewCell *theCell = [self.tableView dequeueReusableCellWithIdentifier:@"BODY_CELL"];
+			if (theCell == NULL)
+				{
+				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BODY_CELL"] autorelease];
+				theCell.selectionStyle = UITableViewCellSelectionStyleNone;
+				if (self.bodyTextView == NULL)
+					{
+					self.bodyTextView = [[[UITextView alloc] initWithFrame:theCell.contentView.bounds] autorelease];
+					self.bodyTextView.text = self.posting.body;
+					self.bodyTextView.scrollEnabled = NO;
+					self.bodyTextView.showsVerticalScrollIndicator = NO;
+					self.bodyTextView.font = [UIFont systemFontOfSize:[UIFont labelFontSize]];
+					self.bodyTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+					[[NSNotificationCenter defaultCenter] addObserverForName:UITextViewTextDidChangeNotification object:self.bodyTextView queue:NULL usingBlock:^(NSNotification *arg1) {
+						CGSize theSize = [self.bodyTextView sizeThatFits:(CGSize){320, 99999}];
+						if (theSize.height > 67)
+							{
+							[self.tableView beginUpdates];
+							self.textViewRowHeight = theSize.height;
+							[self.tableView endUpdates];
+							[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+							}
+						}];
+					[theCell.contentView addSubview:self.bodyTextView];
+					}
+				}
+            theReturnedCell = theCell;
+			}
             break;
         }
     
@@ -255,7 +262,15 @@
     
 - (void)betterLocationManagerDidUpdateToLocationNotification:(NSNotification *)inNotification
     {
-    self.posting.location = [CBetterLocationManager instance].location;
+    NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+    id theTransactionBlock = ^ (void) {
+		self.posting.location = [CBetterLocationManager instance].location;
+		};
+	NSError *theError = NULL;
+	if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
+		{
+		NSLog(@"Error: %@", theError);
+		}
     }
     
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
@@ -269,15 +284,25 @@
     {
     NSLog(@"####### SENDING");
     
-    [self.textView resignFirstResponder];
+    [self.bodyTextView resignFirstResponder];
     
     [[CUserNotificationManager instance] enqueueNotificationWithMessage:@"Posting"];
     
-    self.posting.title = self.titleField.text;
-    self.posting.body = self.textView.text;
+    NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+    id theTransactionBlock = ^ (void) {
+		self.posting.title = self.subjectTextField.text;
+		self.posting.body = self.bodyTextView.text;
+		self.posting.tags = [self.tagsTextField.text componentsSeparatedByString:@","];
+		};
+	NSError *theError = NULL;
+	if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
+		{
+		NSLog(@"Error: %@", theError);
+		}
     
     CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
         NSLog(@"########## RECEIVED: %@", inParameter);
+
         [[CUserNotificationManager instance] dequeueCurrentNotification];
         
         [self dismissModalViewControllerAnimated:YES];
@@ -292,7 +317,8 @@
 
 - (IBAction)keyboard:(id)inSender
     {
-    [self.textView resignFirstResponder];
+	
+    [self.bodyTextView resignFirstResponder];
     }
     
 - (IBAction)photo:(id)inSender
@@ -364,9 +390,9 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
     {
-    NSString *theNewString = [self.textView.text stringByReplacingCharactersInRange:range withString:text];
+    NSString *theNewString = [self.bodyTextView.text stringByReplacingCharactersInRange:range withString:text];
     
-    CGSize theSize = [theNewString sizeWithFont:self.textView.font constrainedToSize:(CGSize){320, 99999} lineBreakMode:UILineBreakModeWordWrap];
+    CGSize theSize = [theNewString sizeWithFont:self.bodyTextView.font constrainedToSize:(CGSize){320, 99999} lineBreakMode:UILineBreakModeWordWrap];
     
 //    NSLog(@"%@", NSStringFromCGSize(theSize));
     if (theSize.height > 67)

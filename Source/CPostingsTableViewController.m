@@ -14,11 +14,13 @@
 #import "CCouchDBDatabase.h"
 #import "CCouchDBDocument.h"
 #import "CPostViewController.h"
-#import "CCouchDBView.h"
 #import "CTestViewController.h"
 #import "CPosting.h"
 #import "CAnythingDBModel.h"
 #import "Bump.h"
+#import "CURLOperation.h"
+#import "CCouchDBSession.h"
+#import "CCouchDBChangeSet.h"
 
 @implementation CPostingsTableViewController
 
@@ -30,6 +32,7 @@
     
     NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
     theFetchRequest.entity = [NSEntityDescription entityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
+	theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"externalID != NULL"];
     theFetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
     self.fetchRequest = theFetchRequest;
 
@@ -42,39 +45,73 @@
 	{
 	[super viewWillAppear:animated];
 
-    CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
+	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].database;
+	
+	CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
+		NSLog(@"OOPS");
+		};
+	
+    CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
         NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
         
-        id theHandler = ^(void) {
-            NSError *theError = NULL;
-            for (CCouchDBDocument *theDocument in inParameter)
-                {
-                NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
-                BOOL theWasCreatedFlag = NO;
-                CPosting *thePosting = [theContext fetchObjectOfEntityForName:[CPosting entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
-                if (theWasCreatedFlag == YES)
-                    {
-                    thePosting.externalID = theDocument.identifier;
-                    }
-					
-				NSString *theTitle = [theDocument.content objectForKey:@"title"];
-				if (theTitle != NULL && theTitle != (id)[NSNull null])
-					{
-					thePosting.title = [theDocument.content objectForKey:@"title"];
-					}
-                }
-            };
+        id theDeleteTransaction = ^(void) {
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocuments];
+			NSError *theError = NULL;
+			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
+			for (CPosting *thePosting in theDeletedPostings)
+				{
+				[theContext deleteObject:thePosting];
+				}
+			};
         
         NSError *theError = NULL;
-        if ([theContext performTransaction:theHandler error:&theError] == NO)
+        if ([theContext performTransaction:theDeleteTransaction error:&theError] == NO && theError != NULL)
             {
-            NSLog(@"ERROR OCCURED: %@", theError);
+			theFailureHandler(theError);
+			return;
             }
+
+		CouchDBSuccessHandler theSuccessHandler = (id)^(id inParameter) {
+			id theCreateTransaction = ^(void) {
+				for (CCouchDBDocument *theDocument in inParameter)
+					{
+					NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
+					BOOL theWasCreatedFlag = NO;
+					NSError *theError = NULL;
+					CPosting *thePosting = [theContext fetchObjectOfEntityForName:[CPosting entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
+					if (theWasCreatedFlag == YES)
+						{
+						thePosting.externalID = theDocument.identifier;
+						}
+						
+					@try
+						{
+						NSString *theTitle = [theDocument.content objectForKey:@"title"];
+						if (theTitle != NULL && theTitle != (id)[NSNull null])
+							{
+							thePosting.title = [theDocument.content objectForKey:@"title"];
+							}
+						}
+					@catch (NSException * e)
+						{
+						NSLog(@"%@", e);
+						}
+					}
+				};
+			NSError *theError = NULL;
+			if ([theContext performTransaction:theCreateTransaction error:&theError] == NO && theError != NULL)
+				{
+				theFailureHandler(theError);
+				return;
+				}
+			};
+
+		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocuments allObjects] options:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
+		[theDatabase.server.session.operationQueue addOperation:theOperation];
         };
 
-    CCouchDBView *theView = [[[CCouchDBView alloc] initWithDatabase:[CAnythingDBServer sharedInstance].database identifier:@"_design/api"] autorelease];
-    
-    [theView fetchViewNamed:@"all-postings" options:NULL withSuccessHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
+	CURLOperation *theOperation = [theDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
+	[theDatabase.server.session.operationQueue addOperation:theOperation];
 	}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -84,7 +121,6 @@
 
 #pragma mark -
 
-// Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 	{
     static NSString *CellIdentifier = @"Cell";
@@ -96,12 +132,16 @@
 		
     CPosting *thePosting = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-//    CCouchDBDocument *theDocument = [self.postings objectAtIndex:indexPath.row];
-    
 	cell.textLabel.text = thePosting.title;
     return cell;
 	}
     
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath;
+	{
+    CPosting *thePosting = [self.fetchedResultsController objectAtIndexPath:indexPath];
+	NSLog(@"%@", thePosting);
+	}
+	
 #pragma mark -
 
 

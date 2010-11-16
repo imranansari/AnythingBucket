@@ -27,7 +27,7 @@ function(data) {
 				}
 			if ('location' in p)
 				{
-				p.static_map_url = 'http://maps.google.com/maps/api/staticmap?center=' + p.location.latitude + ',' + p.location.longitude + '&zoom=12&size=100x100&sensor=false';
+				p.static_map_url = 'http://maps.google.com/maps/api/staticmap?center=' + p.location.coordinate.latitude + ',' + p.location.coordinate.longitude + '&zoom=12&size=100x100&sensor=false';
 				}
 			$.log(p);
 			return(p);

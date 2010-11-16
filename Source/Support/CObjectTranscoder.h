@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface CObjectTranscoder : NSObject {
 
 }
 
 @property (readwrite, nonatomic, retain) NSSet *allowedKeys;
 
-- (NSDictionary *)dictionaryForObject:(id)inObject error:(NSError **)outError;
+- (id)transcodedObjectForObject:(id)inObject error:(NSError **)outError;
 
 @end
 
