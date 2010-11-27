@@ -1,0 +1,15 @@
+[submodule "Externals/KVO-Notification-Manager"]
+	path = Externals/KVO-Notification-Manager
+	url = git@github.com:schwa/KVO-Notification-Manager
+[submodule "Externals/TouchFoundation"]
+	path = Externals/TouchFoundation
+	url = git@github.com:schwa/TouchFoundation
+[submodule "Externals/TouchJSON"]
+	path = Externals/TouchJSON
+	url = git@github.com:schwa/TouchJSON
+[submodule "Externals/TouchUI"]
+	path = Externals/TouchUI
+	url = git@github.com:schwa/TouchUI
+[submodule "Externals/TouchNotifications"]
+	path = Externals/TouchNotifications
+	url = git@github.com:schwa/TouchNotifications
