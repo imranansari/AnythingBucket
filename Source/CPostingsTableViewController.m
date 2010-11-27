@@ -48,7 +48,7 @@
 	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].database;
 	
 	CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
-		NSLog(@"OOPS");
+		NSLog(@"CouchDB Failure: %@", inError);
 		};
 	
     CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
