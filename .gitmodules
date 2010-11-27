@@ -1,19 +1,18 @@
-
 [submodule "Externals/TouchUI"]
 	path = Externals/TouchUI
-	url = git@github.com:schwa/TouchUI
+	url = https://github.com/schwa/TouchUI.git
 [submodule "Externals/TouchFoundation"]
 	path = Externals/TouchFoundation
-	url = git@github.com:schwa/TouchFoundation
+	url = https://github.com/schwa/TouchFoundation.git
 [submodule "Externals/KVO-Notification-Manager"]
 	path = Externals/KVO-Notification-Manager
-	url = git@github.com:schwa/KVO-Notification-Manager
+	url = https://github.com/schwa/KVO-Notification-Manager.git
 [submodule "Externals/TouchJSON"]
 	path = Externals/TouchJSON
-	url = git@github.com:schwa/TouchJSON
+	url = https://github.com/schwa/TouchJSON.git
 [submodule "Externals/TouchNotifications"]
 	path = Externals/TouchNotifications
-	url = git@github.com:schwa/TouchNotifications
+	url = https://github.com/schwa/TouchNotifications.git
 [submodule "Externals/trundle"]
 	path = Externals/trundle
-	url = git@github.com:schwa/trundle
+	url = https://github.com/schwa/trundle.git
