@@ -27,7 +27,13 @@ function(data) {
 				}
 			if ('location' in p)
 				{
-				p.static_map_url = 'http://maps.google.com/maps/api/staticmap?center=' + p.location.coordinate.latitude + ',' + p.location.coordinate.longitude + '&zoom=12&size=100x100&sensor=false';
+				try {
+					p.static_map_url = 'http://maps.google.com/maps/api/staticmap?center=' + p.location.coordinate.latitude + ',' + p.location.coordinate.longitude + '&zoom=12&size=100x100&sensor=false';
+					}
+				catch (err)
+					{
+					p.static_map_url = '';
+					}
 				}
 			$.log(p);
 			return(p);
