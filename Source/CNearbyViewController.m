@@ -19,6 +19,14 @@
 
 @synthesize mapView;
 
+- (id)init
+	{
+	if ((self = [super initWithNibName:NULL bundle:NULL]) != NULL)
+		{
+		}
+	return(self);
+	}
+
 - (void)viewDidLoad
     {
     [super viewDidLoad];

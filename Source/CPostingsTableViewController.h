@@ -11,4 +11,6 @@
 @interface CPostingsTableViewController : CFetchedResultsTableViewController {
 }
 
+@property (readwrite, nonatomic, retain) IBOutlet UIToolbar *toolbar;
+
 @end

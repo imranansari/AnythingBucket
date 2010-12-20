@@ -24,10 +24,21 @@
 
 @implementation CPostingsTableViewController
 
+@synthesize toolbar;
+
+- (id)init
+	{
+	if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
+		{
+		}
+	return(self);
+	}
+
 - (void)viewDidLoad
 	{
 	[super viewDidLoad];
     
+	
     self.managedObjectContext = [CAnythingDBModel instance].managedObjectContext;
     
     NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
