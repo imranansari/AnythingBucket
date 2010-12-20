@@ -16,3 +16,6 @@
 [submodule "Externals/trundle"]
 	path = Externals/trundle
 	url = https://github.com/schwa/trundle.git
+[submodule "Externals/TouchMetrics"]
+	path = Externals/TouchMetrics
+	url = git@github.com:schwa/TouchMetrics.git
