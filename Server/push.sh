@@ -3,5 +3,15 @@
 # http://guide.couchdb.org/draft/managing.html
 
 USER=admin
-read -p "Password for ${USER}? " -s PASSWORD
+
+
+if [ $PASSWORD ]
+then
+	echo "Using envvar."
+else
+	read -p "Password for ${USER}? " -s PASSWORD
+	export PASSWORD=$PASSWORD
+fi
+
+
 couchapp push "http://${USER}:${PASSWORD}@touchcode.couchone.com/anything-db"

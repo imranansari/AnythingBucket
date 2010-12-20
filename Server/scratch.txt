@@ -1,1 +1,6 @@
 http://touchcode.couchone.com/anything-db/_design/api/_view/all-postings
+
+http://touchcode.couchone.com/anything-db/_design/webapp/index.html
+
+
+http://touchcode.couchone.com/anything-db/_design/webapp/map.html

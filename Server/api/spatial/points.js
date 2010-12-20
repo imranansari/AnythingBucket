@@ -3,6 +3,9 @@
 function(doc) {
 	if (doc.location) {
 		var theCoordinate = doc.location.coordinate;
-		emit({type: "Point", coordinates: [theCoordinate.longitude, theCoordinate.latitude]}, doc._id);
+
+		var value = {id:doc._id, coordinate:[theCoordinate.longitude, theCoordinate.latitude]};
+
+		emit({type: "Point", coordinates: [theCoordinate.longitude, theCoordinate.latitude]}, value);
 		}
 	}
