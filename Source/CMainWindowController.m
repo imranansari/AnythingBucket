@@ -12,6 +12,7 @@
 
 #import "CAnythingDBServer.h"
 #import "CBumpManager.h"
+#import "CLocationTracker.h"
 
 @interface CMainWindowController () <UIApplicationDelegate, UITabBarControllerDelegate>
 @end
@@ -38,6 +39,8 @@
 							                        
     [window makeKeyAndVisible];
     [CAnythingDBServer sharedInstance];
+	
+	[CLocationTracker sharedInstance];
 	
     return(YES);
     }
