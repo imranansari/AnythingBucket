@@ -15,22 +15,19 @@
 #import "CCouchDBSession.h"
 #import "CURLOperation.h"
 #import "CObjectTranscoder.h"
-#import "MPOAuthAPI.h"
 #import "CPersistentOperationQueue.h"
 #import "CCodingCouchDBURLOperation.h"
+#import "NSUserDefaults_AnythingBucketExtensions.h"
+#import "CAnythingDBServer.h"
 
 @interface CLocationTracker () <CLLocationManagerDelegate>
 @property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
-@property (readwrite, nonatomic, retain) CCouchDBServer *server;
-@property (readwrite, nonatomic, retain) CCouchDBDatabase *database;
 - (void)start;
 @end
 
 @implementation CLocationTracker
 
 @synthesize locationManager;
-@synthesize server;
-@synthesize database;
 
 + (CLocationTracker *)sharedInstance
 	{
@@ -73,8 +70,6 @@
 			}
 		}
 
-	NSLog(@"%@", theDefaults);
-
 	theLocationManager.delegate = self;
 	theLocationManager.purpose = @"For whatever the hell I want";
 	theLocationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
@@ -83,18 +78,30 @@
 	
 	self.locationManager = theLocationManager;
 	
-	self.server = [[[CCouchDBServer alloc] initWithSession:NULL URL:[NSURL URLWithString:@"http://touchcode.couchone.com"]] autorelease];
-	self.server.session.URLOperationClass = [CCodingCouchDBURLOperation class];
-	self.server.session.operationQueue = [[[CPersistentOperationQueue alloc] initWithName:@"locations"] autorelease];
-//	self.server.URLCredential = [NSURLCredential credentialWithUser:@"user" password:@"password" persistence:NSURLCredentialPersistenceNone];
-	self.database = [[[CCouchDBDatabase alloc] initWithServer:self.server name:@"locations"] autorelease];
+	if ([NSUserDefaults standardUserDefaults].username.length == 0 || [NSUserDefaults standardUserDefaults].password == 0)
+		{
+		NSLog(@"No username or password.");
+		}
+	
+	CPersistentOperationQueue *theOperationQueue = [[[CPersistentOperationQueue alloc] initWithName:@"locations"] autorelease];
+	theOperationQueue.unhibernateBlock = ^(NSOperation *inOperation) {
+		CCouchDBURLOperation *theOperation = (CCouchDBURLOperation *)inOperation;
+		theOperation.successHandler = (CouchDBSuccessHandler)^(CCouchDBDocument *inDocument) {
+//			LogInformation_(@"Posted location: %@", inDocument);
+			};
+		
+		theOperation.failureHandler = ^(NSError *inError) {
+			LogInformation_(@"Failed to post location: %@", inError);
+			};
+
+		};
 	}
 
 #pragma mark -
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 	{
-	NSLog(@"DID UPDATE TO LOC: %@", newLocation);
+	LogInformation_(@"DID UPDATE TO LOC: %@", newLocation);
 	
 //	UILocalNotification *theNotification = [[[UILocalNotification alloc] init] autorelease];
 //	theNotification.alertBody = @"Yo location changed";
@@ -104,6 +111,7 @@
 
 	NSMutableDictionary *theDocument = [NSMutableDictionary dictionary];
 	[theDocument setObject:[NSDate date] forKey:@"timestamp"];
+	[theDocument setObject:@"location-update" forKey:@"type"];
 
     CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
     id theLocationDocument = [theTranscoder transcodedObjectForObject:newLocation error:NULL];
@@ -111,15 +119,15 @@
 	[theDocument setObject:theLocationDocument forKey:@"location"];
 
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
-		NSLog(@"Posted location: %@", inDocument);
+//		LogInformation_(@"Posted location: %@", inDocument);
         };
     
 	id theFailureHandler = ^(NSError *inError) {
-		NSLog(@"Failed to post location: %@", inError);
+		LogInformation_(@"Failed to post location: %@", inError);
 		};
 	
-    CURLOperation *theOperation = [self.database operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:theFailureHandler];
-	[self.server.session.operationQueue addOperation:theOperation];
+    CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].locationsDatabase operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:theFailureHandler];
+	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
 	}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
@@ -149,7 +157,6 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
 	{
-	NSLog(@"DID CHANGE AUTH STATUS");
 	}
 
 

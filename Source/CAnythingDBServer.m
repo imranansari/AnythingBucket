@@ -21,18 +21,20 @@
 #import "CCouchDBSession.h"
 #import "CCouchDBChangeSet.h"
 #import "CURLOperation.h"
+#import "NSUserDefaults_AnythingBucketExtensions.h"
 
 static CAnythingDBServer *gInstance = NULL;
 
 @interface CAnythingDBServer ()
-@property (readwrite, nonatomic, retain) CCouchDBDatabase *database;
+@property (readwrite, nonatomic, retain) CCouchDBDatabase *anythingBucketDatabase;
 @end
 
 #pragma mark -
 
 @implementation CAnythingDBServer
 
-@synthesize database;
+@synthesize anythingBucketDatabase;
+@synthesize locationsDatabase;
 
 + (CAnythingDBServer *)sharedInstance
 {
@@ -48,14 +50,18 @@ return(gInstance);
 
 - (id)init
     {
-    if ((self = [super initWithSession:NULL URL:[NSURL URLWithString:@"http://touchcode.couchone.com"]]) != NULL)
+    if ((self = [super initWithSession:NULL URL:[NSUserDefaults standardUserDefaults].serverURL]) != NULL)
         {
-		database = [[self databaseNamed:@"anything-db"] retain];
+		self.URLCredential = [NSURLCredential credentialWithUser:[NSUserDefaults standardUserDefaults].username password:[NSUserDefaults standardUserDefaults].password persistence:NSURLCredentialPersistenceNone];
+
+
+		anythingBucketDatabase = [[self databaseNamed:@"anything-db"] retain];
+		locationsDatabase = [[self databaseNamed:@"locations"] retain];
 		
-        if (database == NULL)
+        if (locationsDatabase == NULL)
             {
             CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
-                self.database = inParameter;
+                self.anythingBucketDatabase = inParameter;
                 };
             CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
                 if (inError.domain == kCouchErrorDomain && inError.code == CouchDBErrorCode_NoDatabase)
@@ -73,8 +79,10 @@ return(gInstance);
     
 - (void)dealloc
     {
-    [database release];
-    database = NULL;
+    [anythingBucketDatabase release];
+    anythingBucketDatabase = NULL;
+	[locationsDatabase release];
+	locationsDatabase = NULL;
     //
     [super dealloc];
     }
@@ -88,7 +96,7 @@ return(gInstance);
         
         id theTransaction = ^(void) {
 		
-			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocuments];
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocumentsIdentifiers];
 			NSError *theError = NULL;
 			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
 			for (CPosting *thePosting in theDeletedPostings)
@@ -124,7 +132,7 @@ return(gInstance);
             }
         };
 
-	CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].database operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
+	CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].anythingBucketDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:^(NSError *inError) { NSLog(@"Error: %@", inError); }];
 	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
 	}
 

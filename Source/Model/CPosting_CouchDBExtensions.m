@@ -49,7 +49,7 @@
             }
         };
     
-    CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].database operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];
+    CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].anythingBucketDatabase operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];
 	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
 	
 	

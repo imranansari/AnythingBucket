@@ -56,7 +56,7 @@
 	{
 	[super viewWillAppear:animated];
 
-	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].database;
+	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
 	
 	CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
 		NSLog(@"CouchDB Failure: %@", inError);
@@ -66,7 +66,7 @@
         NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
         
         id theDeleteTransaction = ^(void) {
-			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocuments];
+			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocumentsIdentifiers];
 			NSError *theError = NULL;
 			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
 			for (CPosting *thePosting in theDeletedPostings)
@@ -117,7 +117,7 @@
 				}
 			};
 
-		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocuments allObjects] options:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
+		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocumentIdentifiers allObjects] options:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
 		[theDatabase.server.session.operationQueue addOperation:theOperation];
         };
 

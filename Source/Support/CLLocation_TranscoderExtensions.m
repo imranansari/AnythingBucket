@@ -14,7 +14,7 @@
 
 + (NSSet *)keysForEncodingAsType:(NSString *)inType
     {
-    return([NSSet setWithObjects:@"coordinate", @"altitude", @"course", @"speed", @"geohash", NULL]);
+    return([NSSet setWithObjects:@"coordinate", @"altitude", @"course", @"speed", @"geohash", @"horizontalAccuracy", @"verticalAccuracy", @"course", @"timestamp", NULL]);
     }
 
 + (NSValueTransformer *)valueTransformerForTranscodingKey:(NSString *)inKey asType:(NSString *)inType

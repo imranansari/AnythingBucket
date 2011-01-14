@@ -11,7 +11,8 @@
 @interface CAnythingDBServer : CCouchDBServer {
 }
 
-@property (readonly, nonatomic, retain) CCouchDBDatabase *database;
+@property (readonly, nonatomic, retain) CCouchDBDatabase *anythingBucketDatabase;
+@property (readonly, nonatomic, retain) CCouchDBDatabase *locationsDatabase;
 
 + (CAnythingDBServer *)sharedInstance;
 
