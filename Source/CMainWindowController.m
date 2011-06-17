@@ -11,7 +11,7 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 
 #import "CAnythingDBServer.h"
-#import "CBumpManager.h"
+//#import "CBumpManager.h"
 #import "CLocationTracker.h"
 
 @interface CMainWindowController () <UIApplicationDelegate, UITabBarControllerDelegate>
@@ -67,7 +67,7 @@
 
 - (IBAction)bump:(id)inSender
 	{
-	[[CBumpManager sharedInstance] bump:NULL];
+//	[[CBumpManager sharedInstance] bump:NULL];
 	}
 
 @end

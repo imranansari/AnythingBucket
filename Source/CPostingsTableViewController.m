@@ -17,7 +17,6 @@
 #import "CTestViewController.h"
 #import "CPosting.h"
 #import "CAnythingDBModel.h"
-#import "Bump.h"
 #import "CURLOperation.h"
 #import "CCouchDBSession.h"
 #import "CCouchDBChangeSet.h"
