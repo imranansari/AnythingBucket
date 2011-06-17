@@ -10,12 +10,12 @@
 [submodule "Externals/TouchJSON"]
 	path = Externals/TouchJSON
 	url = git://github.com/TouchCode/TouchJSON.git
-[submodule "Externals/TouchNotifications"]
-	path = Externals/TouchNotifications
-	url = git://github.com/TouchCode/TouchNotifications.git
 [submodule "Externals/trundle"]
 	path = Externals/trundle
 	url = git://github.com/schwa/trundle.git
 [submodule "Externals/TouchMetrics"]
 	path = Externals/TouchMetrics
 	url = git://github.com/TouchCode/TouchMetrics.git
+[submodule "Externals/TouchLogging"]
+	path = Externals/TouchLogging
+	url = git://github.com/TouchCode/TouchLogging.git

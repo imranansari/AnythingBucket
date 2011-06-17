@@ -26,9 +26,7 @@
 @property (readwrite, retain) NSString *identifier;
 
 // Relationships
-@property (readwrite, retain) CPosting *posting;
-- (CPosting *)posting;
-- (void)setPosting:(CPosting *)inPosting;
+@property (readwrite, nonatomic, retain) CPosting *posting;
 
 #pragma mark end emogenerator accessors
 

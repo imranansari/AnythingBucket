@@ -25,20 +25,20 @@ return(@"Attachment");
 
 @dynamic posting;
 
-- (CPosting *)posting
-{
-[self willAccessValueForKey:@"posting"];
-CPosting *theResult = [self primitiveValueForKey:@"posting"];
-[self didAccessValueForKey:@"posting"];
-return(theResult);
-}
-
-- (void)setPosting:(CPosting *)inPosting
-{
-[self willChangeValueForKey:@"posting"];
-[self setPrimitiveValue:inPosting forKey:@"posting"];
-[self didChangeValueForKey:@"posting"];
-}
+//- (CPosting *)posting
+//    {
+//    [self willAccessValueForKey:@"posting"];
+//    CPosting *theResult = [self primitiveValueForKey:@"posting"];
+//    [self didAccessValueForKey:@"posting"];
+//    return(theResult);
+//    }
+//
+//- (void)setPosting:(CPosting *)inPosting
+//    {
+//    [self willChangeValueForKey:@"posting"];
+//    [self setPrimitiveValue:inPosting forKey:@"posting"];
+//    [self didChangeValueForKey:@"posting"];
+//    }
 
 @dynamic contentType;
 

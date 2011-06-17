@@ -15,7 +15,6 @@
 #import "NSManagedObjectContext_Extensions.h"
 
 #import "CBetterLocationManager.h"
-#import "CUserNotificationManager.h"
 #import "CAnythingDBServer.h"
 #import "CCouchDBDatabase.h"
 #import "CErrorPresenter.h"
@@ -286,7 +285,7 @@
     
     [self.bodyTextView resignFirstResponder];
     
-    [[CUserNotificationManager instance] enqueueNotificationWithMessage:@"Posting"];
+//    [[CUserNotificationManager instance] enqueueNotificationWithMessage:@"Posting"];
     
     NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
     id theTransactionBlock = ^ (void) {
@@ -303,13 +302,13 @@
     CouchDBSuccessHandler theSuccessHandler = ^(id inParameter) {
         NSLog(@"########## RECEIVED: %@", inParameter);
 
-        [[CUserNotificationManager instance] dequeueCurrentNotification];
+//        [[CUserNotificationManager instance] dequeueCurrentNotification];
         
         [self dismissModalViewControllerAnimated:YES];
         };
     CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
         NSLog(@"Error: %@", inError);
-        [[CUserNotificationManager instance] dequeueCurrentNotification];
+//        [[CUserNotificationManager instance] dequeueCurrentNotification];
         [self presentError:inError];
         };
     [self.posting postWithSuccessHandler:theSuccessHandler failureHandler:theFailureHandler];

@@ -8,7 +8,6 @@
 
 #import "CPosting_CouchDBExtensions.h"
 
-#import "CUserNotificationManager.h"
 #import "CBetterLocationManager.h"
 #import "CAnythingDBServer.h"
 #import "CLLocation_Extensions.h"
