@@ -61,18 +61,6 @@
 	return(self);
 	}
 
-- (void)dealloc
-    {    
-	// TODO
-
-    [inputAccessoryView release];
-    inputAccessoryView = NULL;
-    
-    [doneButton release];
-    doneButton = NULL;
-    //
-    [super dealloc];
-    }
     
 #pragma mark -	
 
@@ -88,7 +76,7 @@
             CLLocation *theLocation = [CBetterLocationManager instance].location;
             posting.location = theLocation;
             
-            posting = [thePosting retain];
+            posting = thePosting;
             };
         if ([theContext performTransaction:theBlock error:&theError])
             {
@@ -106,7 +94,7 @@
     {
     [super viewDidLoad];
     //
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)];
     }
 
 - (void)viewDidUnload
@@ -187,7 +175,7 @@
 			CMailTableViewCell *theCell = (id)[self.tableView dequeueReusableCellWithIdentifier:@"TAGS_CELL"];
 			if (theCell == NULL)
 				{
-				theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TAGS_CELL"] autorelease];
+				theCell = [[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"TAGS_CELL"];
 				theCell.textLabel.text = @"Tags:";
 				theCell.textField.text = [self.posting.tags componentsJoinedByString:@","];
 				self.tagsTextField = theCell.textField;
@@ -200,7 +188,7 @@
 			CMailTableViewCell *theCell = (id)[self.tableView dequeueReusableCellWithIdentifier:@"SUBJECT_CELL"];
 			if (theCell == NULL)
 				{
-				theCell = [[[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SUBJECT_CELL"] autorelease];
+				theCell = [[CMailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SUBJECT_CELL"];
 				theCell.textLabel.text = @"Subject:";
 				theCell.textField.text = self.posting.title;
 				self.subjectTextField = theCell.textField;
@@ -213,11 +201,11 @@
 			UITableViewCell *theCell = [self.tableView dequeueReusableCellWithIdentifier:@"BODY_CELL"];
 			if (theCell == NULL)
 				{
-				theCell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BODY_CELL"] autorelease];
+				theCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BODY_CELL"];
 				theCell.selectionStyle = UITableViewCellSelectionStyleNone;
 				if (self.bodyTextView == NULL)
 					{
-					self.bodyTextView = [[[UITextView alloc] initWithFrame:theCell.contentView.bounds] autorelease];
+					self.bodyTextView = [[UITextView alloc] initWithFrame:theCell.contentView.bounds];
 					self.bodyTextView.text = self.posting.body;
 					self.bodyTextView.scrollEnabled = NO;
 					self.bodyTextView.showsVerticalScrollIndicator = NO;
@@ -322,15 +310,14 @@
     
 - (IBAction)photo:(id)inSender
     {
-    UIActionSheet *theActionSheet = [[[UIActionSheet alloc] initWithTitle:NULL delegate:NULL cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL] autorelease];
-    [theActionSheet retain];
+    UIActionSheet *theActionSheet = [[UIActionSheet alloc] initWithTitle:NULL delegate:NULL cancelButtonTitle:NULL destructiveButtonTitle:NULL otherButtonTitles:NULL];
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
         NSArray *theAvailableMediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
         if ([theAvailableMediaTypes containsObject:(id)kUTTypeImage] == YES && [theAvailableMediaTypes containsObject:(id)kUTTypeMovie] == YES)
             {
             [theActionSheet addButtonWithTitle:@"Take Photo or Video" handler:^(void) {
-                UIImagePickerController *theController = [[[UIImagePickerController alloc] init] autorelease];
+                UIImagePickerController *theController = [[UIImagePickerController alloc] init];
                 theController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 theController.mediaTypes = [NSArray arrayWithObjects:(id)kUTTypeImage, (id)kUTTypeMovie, NULL];
                 theController.allowsEditing = YES;
@@ -342,7 +329,7 @@
         else if ([theAvailableMediaTypes containsObject:(id)kUTTypeImage] == YES && [theAvailableMediaTypes containsObject:(id)kUTTypeMovie] == NO)
             {
             [theActionSheet addButtonWithTitle:@"Take Photo" handler:^(void) {
-                UIImagePickerController *theController = [[[UIImagePickerController alloc] init] autorelease];
+                UIImagePickerController *theController = [[UIImagePickerController alloc] init];
                 theController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 theController.mediaTypes = [NSArray arrayWithObjects:(id)kUTTypeImage, NULL];
                 theController.allowsEditing = YES;
@@ -356,7 +343,7 @@
             CPostViewController *_self = self;
             
             [theActionSheet addButtonWithTitle:@"Take Movie" handler:^(void) {
-                UIImagePickerController *theController = [[[UIImagePickerController alloc] init] autorelease];
+                UIImagePickerController *theController = [[UIImagePickerController alloc] init];
                 theController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 theController.mediaTypes = [NSArray arrayWithObjects:(id)kUTTypeMovie, NULL];
                 theController.allowsEditing = YES;
@@ -369,7 +356,7 @@
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
         {
         [theActionSheet addButtonWithTitle:@"Choose Existing" handler:^(void) {
-            UIImagePickerController *theController = [[[UIImagePickerController alloc] init] autorelease];
+            UIImagePickerController *theController = [[UIImagePickerController alloc] init];
             theController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 //            theController.mediaTypes = [NSArray arrayWithObjects:(id)kUTTypeImage, NULL];
 //            theController.allowsEditing = YES;

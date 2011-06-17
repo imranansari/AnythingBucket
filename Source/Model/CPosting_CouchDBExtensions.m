@@ -23,10 +23,10 @@
 
 - (void)postWithSuccessHandler:(CouchDBSuccessHandler)inSuccessHandler failureHandler:(CouchDBFailureHandler)inFailureHandler
     {
-    CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
+    CObjectTranscoder *theTranscoder = [[CObjectTranscoder alloc] init];
     id theDocument = [theTranscoder transcodedObjectForObject:self error:NULL];
     
-    theDocument = [[theDocument mutableCopy] autorelease];
+    theDocument = [theDocument mutableCopy];
 
     [theDocument setObject:@"posting" forKey:@"type"];
 
@@ -37,7 +37,7 @@
 		
         for (CAttachment *theAttachment in self.attachments)
             {
-            CCouchDBAttachment *theCouchAttachment = [[[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data] autorelease];
+            CCouchDBAttachment *theCouchAttachment = [[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data];
             
             [inDocument addAttachment:theCouchAttachment];
             }

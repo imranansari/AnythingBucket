@@ -23,11 +23,6 @@
 
 @synthesize window;
 
-- (void)dealloc
-    {
-    [window release];
-    [super dealloc];
-    }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
     {

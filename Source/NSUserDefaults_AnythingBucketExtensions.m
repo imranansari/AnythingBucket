@@ -13,7 +13,7 @@
 
 + (void)initialize
 	{
-	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];
+	@autoreleasepool {
 	
 	NSDictionary *theRegistrationDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"http://touchcode.couchone.com", @"ServerURL",
@@ -21,7 +21,7 @@
 	
 	[[self standardUserDefaults] registerDefaults:theRegistrationDefaults];
 	
-	[thePool release];
+	}
 	}
 
 - (NSURL *)serverURL

@@ -40,7 +40,7 @@
 	
     self.managedObjectContext = [CAnythingDBModel instance].managedObjectContext;
     
-    NSFetchRequest *theFetchRequest = [[[NSFetchRequest alloc] init] autorelease];
+    NSFetchRequest *theFetchRequest = [[NSFetchRequest alloc] init];
     theFetchRequest.entity = [NSEntityDescription entityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
 	theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"externalID != NULL"];
     theFetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
@@ -137,7 +137,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil)
 		{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		}
 		
     CPosting *thePosting = [self.fetchedResultsController objectAtIndexPath:indexPath];

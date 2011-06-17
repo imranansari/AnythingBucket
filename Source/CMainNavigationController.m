@@ -15,7 +15,7 @@
 
 - (IBAction)pageCurl:(id)inSender
     {
-    CTestViewController *theViewController = [[[CTestViewController alloc] init] autorelease];
+    CTestViewController *theViewController = [[CTestViewController alloc] init];
     
 //    theViewController.view.frame = [self.view convertRect:self.topViewController.view.bounds toView:self.topViewController.view.window];
 
@@ -36,9 +36,9 @@
 
 - (IBAction)post:(id)inSender
 	{
-	CPostViewController *theViewController = [[[CPostViewController alloc] init] autorelease];
+	CPostViewController *theViewController = [[CPostViewController alloc] init];
     
-	UINavigationController *theNavigationController = [[[UINavigationController alloc] initWithRootViewController:theViewController] autorelease];
+	UINavigationController *theNavigationController = [[UINavigationController alloc] initWithRootViewController:theViewController];
 	
 	[self presentModalViewController:theNavigationController animated:YES];
 	}

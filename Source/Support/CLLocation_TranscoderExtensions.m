@@ -29,7 +29,7 @@
                 [NSNumber numberWithDouble:theCoordinate.longitude], @"longitude",
                 NULL]);
             };
-        NSValueTransformer *theValueTransformer = [[[CBlockValueTransformer alloc] initWithBlock:theBlock reverseBlock:NULL] autorelease];
+        NSValueTransformer *theValueTransformer = [[CBlockValueTransformer alloc] initWithBlock:theBlock reverseBlock:NULL];
         return(theValueTransformer);
         }
     else

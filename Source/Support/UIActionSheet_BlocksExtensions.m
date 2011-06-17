@@ -38,7 +38,7 @@ static void *kUIActionSheet_BlocksExtensions_Standin = "kUIActionSheet_BlocksExt
     if (theStandin == NULL)
         {
         NSAssert(self.delegate == NULL, @"Cannot replace delegate with a standin");
-        theStandin = [[[CActionSheetDelegateStandIn alloc] init] autorelease];
+        theStandin = [[CActionSheetDelegateStandIn alloc] init];
         self.delegate = theStandin;
         objc_setAssociatedObject(self, kUIActionSheet_BlocksExtensions_Standin, theStandin, OBJC_ASSOCIATION_RETAIN);
         }
@@ -53,7 +53,7 @@ static void *kUIActionSheet_BlocksExtensions_Standin = "kUIActionSheet_BlocksExt
 - (NSUInteger)addButtonWithTitle:(NSString *)title handler:(void (^)(void))inHandler
     {
     NSUInteger theButtonIndex = [self addButtonWithTitle:title];
-    [self.standIn.handlersByIndex setObject:[[inHandler copy] autorelease] forKey:[NSNumber numberWithUnsignedInteger:theButtonIndex]];
+    [self.standIn.handlersByIndex setObject:[inHandler copy] forKey:[NSNumber numberWithUnsignedInteger:theButtonIndex]];
     return(theButtonIndex);
     }
 
@@ -78,10 +78,7 @@ return(self);
     {
     NSLog(@"HANDLER DEALLOC");
     
-    [handlersByIndex release];
-    handlersByIndex = NULL;
     //
-    [super dealloc];
     }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;

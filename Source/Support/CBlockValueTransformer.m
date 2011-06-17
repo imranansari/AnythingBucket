@@ -29,20 +29,17 @@
     {
     if ((self = [super init]) != NULL)
         {
-        block = [inBlock retain];
-        reverseBlock = [inReverseBlock retain];
+        block = inBlock;
+        reverseBlock = inReverseBlock;
         }
     return(self);
     }
 
 - (void)dealloc
     {
-    [block release];
     block = NULL;
-    [reverseBlock release];
     reverseBlock = NULL;
     //
-    [super dealloc];
     }
 
 - (id)transformedValue:(id)value

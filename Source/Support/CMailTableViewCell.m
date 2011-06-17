@@ -28,10 +28,8 @@
 
 - (void)dealloc
     {
-    [textField release];
     textField = NULL;
     //
-    [super dealloc];
     }
 
 - (UITextField *)textField

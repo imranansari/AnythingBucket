@@ -50,7 +50,7 @@
 
 - (void)start
 	{
-	CLLocationManager *theLocationManager = [[[CLLocationManager alloc] init] autorelease];
+	CLLocationManager *theLocationManager = [[CLLocationManager alloc] init];
 
 //	NSDictionary *theCredentials = [NSDictionary dictionaryWithObjectsAndKeys:	@"dummy-consumer-key", kMPOAuthCredentialConsumerKey,
 //																				@"dummy-consumer-secret", kMPOAuthCredentialConsumerSecret,
@@ -83,7 +83,7 @@
 		NSLog(@"No username or password.");
 		}
 	
-	CPersistentOperationQueue *theOperationQueue = [[[CPersistentOperationQueue alloc] initWithName:@"locations"] autorelease];
+	CPersistentOperationQueue *theOperationQueue = [[CPersistentOperationQueue alloc] initWithName:@"locations"];
 	theOperationQueue.unhibernateBlock = ^(NSOperation *inOperation) {
 		CCouchDBURLOperation *theOperation = (CCouchDBURLOperation *)inOperation;
 		theOperation.successHandler = (CouchDBSuccessHandler)^(CCouchDBDocument *inDocument) {
@@ -113,7 +113,7 @@
 	[theDocument setObject:[NSDate date] forKey:@"timestamp"];
 	[theDocument setObject:@"location-update" forKey:@"type"];
 
-    CObjectTranscoder *theTranscoder = [[[CObjectTranscoder alloc] init] autorelease];
+    CObjectTranscoder *theTranscoder = [[CObjectTranscoder alloc] init];
     id theLocationDocument = [theTranscoder transcodedObjectForObject:newLocation error:NULL];
 
 	[theDocument setObject:theLocationDocument forKey:@"location"];

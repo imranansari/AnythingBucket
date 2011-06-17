@@ -55,8 +55,8 @@ return(gInstance);
 		self.URLCredential = [NSURLCredential credentialWithUser:[NSUserDefaults standardUserDefaults].username password:[NSUserDefaults standardUserDefaults].password persistence:NSURLCredentialPersistenceNone];
 
 
-		anythingBucketDatabase = [[self databaseNamed:@"anything-db"] retain];
-		locationsDatabase = [[self databaseNamed:@"locations"] retain];
+		anythingBucketDatabase = [self databaseNamed:@"anything-db"];
+		locationsDatabase = [self databaseNamed:@"locations"];
 		
         if (locationsDatabase == NULL)
             {
@@ -77,15 +77,6 @@ return(gInstance);
     return(self);
     }
     
-- (void)dealloc
-    {
-    [anythingBucketDatabase release];
-    anythingBucketDatabase = NULL;
-	[locationsDatabase release];
-	locationsDatabase = NULL;
-    //
-    [super dealloc];
-    }
 
 #pragma mark -
 

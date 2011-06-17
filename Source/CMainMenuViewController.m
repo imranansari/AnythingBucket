@@ -20,13 +20,13 @@
 
 - (IBAction)actionPostings
 	{
-	UIViewController *theViewController = [[[CPostingsTableViewController alloc] init] autorelease];
+	UIViewController *theViewController = [[CPostingsTableViewController alloc] init];
 	[self.navigationController pushViewController:theViewController animated:YES];
 	}
 
 - (IBAction)actionPlaces
 	{
-	UIViewController *theViewController = [[[CNearbyViewController alloc] init] autorelease];
+	UIViewController *theViewController = [[CNearbyViewController alloc] init];
 	[self.navigationController pushViewController:theViewController animated:YES];
 	}
 

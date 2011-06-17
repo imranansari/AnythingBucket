@@ -41,14 +41,14 @@
     [super viewDidLoad];
 
     self.title = @"Nearby";
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(locate:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(locate:)];
 	
 	CouchDBSuccessHandler theSuccessHandler = (CouchDBSuccessHandler)^(CCouchDBChangeSet *inChangeSet) {
 		self.locations = [inChangeSet.changedDocuments allObjects];
 
 
 		NSDictionary *theFirstLocation = [self.locations objectAtIndex:0];
-		CGenericOverlay *theOverlay = [[[CGenericOverlay alloc] init] autorelease];
+		CGenericOverlay *theOverlay = [[CGenericOverlay alloc] init];
 		theOverlay.boundingMapRect = MKMapRectWorld;
 		theOverlay.coordinate = (CLLocationCoordinate2D){
 			.latitude = [[theFirstLocation valueForKeyPath:@"location.coordinate.latitude"] doubleValue],
@@ -92,7 +92,7 @@
 	
 	MKPolygon *thePolygon = [MKPolygon polygonWithCoordinates:theLocations count:[self.locations count]];
 	
-	MKPolygonView *thePolygonView = [[[MKPolygonView alloc] initWithPolygon:thePolygon] autorelease];
+	MKPolygonView *thePolygonView = [[MKPolygonView alloc] initWithPolygon:thePolygon];
 	
 	free(theLocations);
 	

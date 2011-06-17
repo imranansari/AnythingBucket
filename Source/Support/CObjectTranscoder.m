@@ -92,7 +92,7 @@ static const char* getPropertyType(objc_property_t property);
     {
     NSMutableDictionary *theDictionary = [NSMutableDictionary dictionary];
     
-    NSMutableSet *theKeys = [[[self keysForEncodingObject:inObject error:outError] mutableCopy] autorelease];
+    NSMutableSet *theKeys = [[self keysForEncodingObject:inObject error:outError] mutableCopy];
     if (self.allowedKeys)
         {
         [theKeys intersectSet:self.allowedKeys];

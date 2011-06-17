@@ -84,7 +84,6 @@
 		4530645512A18B4C00B99DFA /* CKVOBlockNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530642F12A18B4C00B99DFA /* CKVOBlockNotificationHelper.m */; };
 		4530645612A18B4C00B99DFA /* NSObject_KVOBlockNotificationExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4530643112A18B4C00B99DFA /* NSObject_KVOBlockNotificationExtensions.m */; };
 		4535C38F12717F16006291AC /* CTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C38D12717F16006291AC /* CTestViewController.m */; };
-		4535C39012717F16006291AC /* CTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4535C38E12717F16006291AC /* CTestViewController.xib */; };
 		4535C41512718374006291AC /* CMainNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C41312718374006291AC /* CMainNavigationController.m */; };
 		4535C52E12723BEC006291AC /* UIActionSheet_BlocksExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C52B12723BEC006291AC /* UIActionSheet_BlocksExtensions.m */; };
 		4535C52F12723BEC006291AC /* UIViewController_KeyboardExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4535C52D12723BEC006291AC /* UIViewController_KeyboardExtensions.m */; };
@@ -117,23 +116,24 @@
 		458CDAAE12BEF905005EBC98 /* CPersistentOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 458CDA3012BEF905005EBC98 /* CPersistentOperationQueue.m */; };
 		458CDAAF12BEF905005EBC98 /* Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 458CDA3212BEF905005EBC98 /* Swizzle.m */; };
 		458CDB1B12BEFF0F005EBC98 /* CMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458CDB1912BEFF0F005EBC98 /* CMainMenuViewController.m */; };
-		458CDB1C12BEFF0F005EBC98 /* CMainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458CDB1A12BEFF0F005EBC98 /* CMainMenuViewController.xib */; };
 		458CDBBE12BF2528005EBC98 /* CLLocation_TranscoderExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 458CDBBC12BF2528005EBC98 /* CLLocation_TranscoderExtensions.m */; };
-		458FF5AF1270CA6100FCD632 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5931270CA6100FCD632 /* MainWindow.xib */; };
 		458FF5B01270CA6100FCD632 /* CAnythingDBServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5961270CA6100FCD632 /* CAnythingDBServer.m */; };
 		458FF5B11270CA6100FCD632 /* CMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5981270CA6100FCD632 /* CMainWindowController.m */; };
 		458FF5B31270CA6100FCD632 /* CNearbyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF59C1270CA6100FCD632 /* CNearbyViewController.m */; };
-		458FF5B41270CA6100FCD632 /* CNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF59D1270CA6100FCD632 /* CNearbyViewController.xib */; };
 		458FF5B71270CA6100FCD632 /* CPostingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A31270CA6100FCD632 /* CPostingsTableViewController.m */; };
-		458FF5B81270CA6100FCD632 /* CPostingsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A41270CA6100FCD632 /* CPostingsTableViewController.xib */; };
 		458FF5B91270CA6100FCD632 /* CPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A61270CA6100FCD632 /* CPostViewController.m */; };
-		458FF5BA1270CA6100FCD632 /* CPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A71270CA6100FCD632 /* CPostViewController.xib */; };
 		458FF5BB1270CA6100FCD632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 458FF5A81270CA6100FCD632 /* main.m */; };
 		459698E0127F6DAE00ED5E85 /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 459698DF127F6DAE00ED5E85 /* CJSONSerializedData.m */; };
 		459698E9127F6DC700ED5E85 /* CLLocation_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459698E6127F6DC700ED5E85 /* CLLocation_Extensions.m */; };
 		459698EA127F6DC700ED5E85 /* CLLocation_GeohashExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459698E8127F6DC700ED5E85 /* CLLocation_GeohashExtensions.m */; };
 		45969A18127F772E00ED5E85 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45969A17127F772E00ED5E85 /* AudioToolbox.framework */; };
 		45AEE0BE128B45EC00888C51 /* CCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AEE0BD128B45EC00888C51 /* CCouchDBDesignDocument.m */; };
+		45C2D4CF13ABF8EF00DE93FD /* CMainMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458CDB1A12BEFF0F005EBC98 /* CMainMenuViewController.xib */; };
+		45C2D4D013ABF8F200DE93FD /* CNearbyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF59D1270CA6100FCD632 /* CNearbyViewController.xib */; };
+		45C2D4D113ABF8F600DE93FD /* CPostingsTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A41270CA6100FCD632 /* CPostingsTableViewController.xib */; };
+		45C2D4D213ABF8F800DE93FD /* CPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5A71270CA6100FCD632 /* CPostViewController.xib */; };
+		45C2D4D313ABF8FB00DE93FD /* CTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4535C38E12717F16006291AC /* CTestViewController.xib */; };
+		45C2D4D413ABF8FE00DE93FD /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5931270CA6100FCD632 /* MainWindow.xib */; };
 		45C55EEE1277EF4D00E8F8BA /* CTemporaryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EED1277EF4D00E8F8BA /* CTemporaryFile.m */; };
 		45C55F671277EF5D00E8F8BA /* CWindowViewFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EF21277EF5D00E8F8BA /* CWindowViewFlipper.m */; };
 		45C55F681277EF5D00E8F8BA /* BookmarkButtonBackground_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C55EF51277EF5D00E8F8BA /* BookmarkButtonBackground_A.png */; };
@@ -1404,11 +1404,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				458FF5AF1270CA6100FCD632 /* MainWindow.xib in Resources */,
-				458FF5B41270CA6100FCD632 /* CNearbyViewController.xib in Resources */,
-				458FF5B81270CA6100FCD632 /* CPostingsTableViewController.xib in Resources */,
-				458FF5BA1270CA6100FCD632 /* CPostViewController.xib in Resources */,
-				4535C39012717F16006291AC /* CTestViewController.xib in Resources */,
 				45C55F681277EF5D00E8F8BA /* BookmarkButtonBackground_A.png in Resources */,
 				45C55F691277EF5D00E8F8BA /* BookmarkButtonBackground_B.png in Resources */,
 				45C55F6A1277EF5D00E8F8BA /* BookmarkButtonBorder_A.png in Resources */,
@@ -1428,8 +1423,13 @@
 				45C55FA21277EF5D00E8F8BA /* glossyButton-highlighted.png in Resources */,
 				45C55FA31277EF5D00E8F8BA /* glossyButton-normal.png in Resources */,
 				455136F412823EAD0087EDD0 /* Icon.png in Resources */,
-				458CDB1C12BEFF0F005EBC98 /* CMainMenuViewController.xib in Resources */,
 				456B04EA12C023CC003CBCCE /* Settings.bundle in Resources */,
+				45C2D4CF13ABF8EF00DE93FD /* CMainMenuViewController.xib in Resources */,
+				45C2D4D013ABF8F200DE93FD /* CNearbyViewController.xib in Resources */,
+				45C2D4D113ABF8F600DE93FD /* CPostingsTableViewController.xib in Resources */,
+				45C2D4D213ABF8F800DE93FD /* CPostViewController.xib in Resources */,
+				45C2D4D313ABF8FB00DE93FD /* CTestViewController.xib in Resources */,
+				45C2D4D413ABF8FE00DE93FD /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1645,6 +1645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1668,6 +1669,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
