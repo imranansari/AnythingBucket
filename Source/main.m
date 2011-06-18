@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CMainWindowController.h"
+
 int main(int argc, char *argv[])
     {
     @autoreleasepool
         {
-        int retVal = UIApplicationMain(argc, argv, nil, nil);
+        int retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([CMainWindowController class]));
         return retVal;
         }
     }

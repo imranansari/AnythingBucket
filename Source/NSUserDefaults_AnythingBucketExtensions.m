@@ -34,9 +34,19 @@
 	return([self objectForKey:@"username"]);
 	}
 
+- (void)setUsername:(NSString *)inUsername
+	{
+	[self setObject:inUsername forKey:@"username"];
+	}
+
 - (NSString *)password
 	{
 	return([self objectForKey:@"password"]);
+	}
+
+- (void)setPassword:(NSString *)inPassword
+	{
+	[self setObject:inPassword forKey:@"password"];
 	}
 
 @end

@@ -11,7 +11,7 @@
 @interface NSUserDefaults (NSUserDefaults_AnythingBucketExtensions)
 
 @property (readonly, nonatomic, retain) NSURL *serverURL;
-@property (readonly, nonatomic, retain) NSString *username;
-@property (readonly, nonatomic, retain) NSString *password;
+@property (readwrite, nonatomic, retain) NSString *username;
+@property (readwrite, nonatomic, retain) NSString *password;
 
 @end

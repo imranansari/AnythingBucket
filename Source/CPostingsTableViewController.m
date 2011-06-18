@@ -14,7 +14,6 @@
 #import "CCouchDBDatabase.h"
 #import "CCouchDBDocument.h"
 #import "CPostViewController.h"
-#import "CTestViewController.h"
 #import "CPosting.h"
 #import "CAnythingDBModel.h"
 #import "CURLOperation.h"
@@ -97,7 +96,7 @@
 					@try
 						{
 						NSString *theTitle = [theDocument.content objectForKey:@"title"];
-						if (theTitle != NULL && theTitle != (id)[NSNull null])
+						if (theTitle != NULL && theTitle != (id)[NSNull null] && [theTitle isKindOfClass:[NSString class]])
 							{
 							thePosting.title = [theDocument.content objectForKey:@"title"];
 							}

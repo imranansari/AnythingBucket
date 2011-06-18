@@ -19,6 +19,7 @@
 #import "CCodingCouchDBURLOperation.h"
 #import "NSUserDefaults_AnythingBucketExtensions.h"
 #import "CAnythingDBServer.h"
+#import "UIAlertView_BlocksExtensions.h"
 
 @interface CLocationTracker () <CLLocationManagerDelegate>
 @property (readwrite, nonatomic, retain) CLLocationManager *locationManager;
@@ -78,11 +79,6 @@
 	
 	self.locationManager = theLocationManager;
 	
-	if ([NSUserDefaults standardUserDefaults].username.length == 0 || [NSUserDefaults standardUserDefaults].password == 0)
-		{
-		NSLog(@"No username or password.");
-		}
-	
 	CPersistentOperationQueue *theOperationQueue = [[CPersistentOperationQueue alloc] initWithName:@"locations"];
 	theOperationQueue.unhibernateBlock = ^(NSOperation *inOperation) {
 		CCouchDBURLOperation *theOperation = (CCouchDBURLOperation *)inOperation;
@@ -93,7 +89,6 @@
 		theOperation.failureHandler = ^(NSError *inError) {
 			LogInformation_(@"Failed to post location: %@", inError);
 			};
-
 		};
 	}
 
@@ -103,11 +98,11 @@
 	{
 	LogInformation_(@"DID UPDATE TO LOC: %@", newLocation);
 	
-//	UILocalNotification *theNotification = [[[UILocalNotification alloc] init] autorelease];
-//	theNotification.alertBody = @"Yo location changed";
-//	theNotification.hasAction = YES;
-//	theNotification.alertAction = @"Do something";
-//	[[UIApplication sharedApplication] presentLocalNotificationNow:theNotification];
+	UILocalNotification *theNotification = [[UILocalNotification alloc] init];
+	theNotification.alertBody = @"Yo location changed";
+	theNotification.hasAction = YES;
+	theNotification.alertAction = @"Do something";
+	[[UIApplication sharedApplication] presentLocalNotificationNow:theNotification];
 
 	NSMutableDictionary *theDocument = [NSMutableDictionary dictionary];
 	[theDocument setObject:[NSDate date] forKey:@"timestamp"];

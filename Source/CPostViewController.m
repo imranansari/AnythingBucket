@@ -114,20 +114,20 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(betterLocationManagerDidUpdateToLocationNotification:) name:kBetterLocationManagerDidUpdateToLocationNotification object:[CBetterLocationManager instance]];
     [[CBetterLocationManager instance] startUpdatingLocation:NULL];
 
-    __block CPostViewController *_self = self;
-    KVOBlock theKVOBlock = ^(NSString *keyPath, id object, NSDictionary *change, id identifier) {
-        dispatch_block_t theBlock = ^(void) {
-            id theDatabase = UNNULLIFY([change objectForKey:NSKeyValueChangeNewKey]);
-            _self.doneButton.enabled = theDatabase != NULL;
-            if (theDatabase != NULL)
-                {
-                [[CAnythingDBServer sharedInstance] removeObserver:_self forKeyPath:@"database" identifier:@"xyzzy"];
-                }
-            };
-        dispatch_async(dispatch_get_main_queue(), theBlock);
-        };
-    [[CAnythingDBServer sharedInstance] addObserver:self handler:theKVOBlock forKeyPath:@"database" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew identifier:@"xyzzy"];
-    
+//    __block CPostViewController *_self = self;
+//    KVOBlock theKVOBlock = ^(NSString *keyPath, id object, NSDictionary *change, id identifier) {
+//        dispatch_block_t theBlock = ^(void) {
+//            id theDatabase = UNNULLIFY([change objectForKey:NSKeyValueChangeNewKey]);
+//            _self.doneButton.enabled = theDatabase != NULL;
+//            if (theDatabase != NULL)
+//                {
+//                [[CAnythingDBServer sharedInstance] removeObserver:_self forKeyPath:@"database" identifier:@"xyzzy"];
+//                }
+//            };
+//        dispatch_async(dispatch_get_main_queue(), theBlock);
+//        };
+//    [[CAnythingDBServer sharedInstance] addObserver:self handler:theKVOBlock forKeyPath:@"database" options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew identifier:@"xyzzy"];
+//    
     [self respondToKeyboardAppearance];    
     }
 
