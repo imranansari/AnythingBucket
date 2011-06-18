@@ -127,7 +127,6 @@
 		459698EA127F6DC700ED5E85 /* CLLocation_GeohashExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459698E8127F6DC700ED5E85 /* CLLocation_GeohashExtensions.m */; };
 		45969A18127F772E00ED5E85 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45969A17127F772E00ED5E85 /* AudioToolbox.framework */; };
 		45AEE0BE128B45EC00888C51 /* CCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AEE0BD128B45EC00888C51 /* CCouchDBDesignDocument.m */; };
-		45C2D4D413ABF8FE00DE93FD /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 458FF5931270CA6100FCD632 /* MainWindow.xib */; };
 		45C55EEE1277EF4D00E8F8BA /* CTemporaryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EED1277EF4D00E8F8BA /* CTemporaryFile.m */; };
 		45C55F671277EF5D00E8F8BA /* CWindowViewFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EF21277EF5D00E8F8BA /* CWindowViewFlipper.m */; };
 		45C55F681277EF5D00E8F8BA /* BookmarkButtonBackground_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C55EF51277EF5D00E8F8BA /* BookmarkButtonBackground_A.png */; };
@@ -400,7 +399,6 @@
 		458CDBBB12BF2528005EBC98 /* CLLocation_TranscoderExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLLocation_TranscoderExtensions.h; sourceTree = "<group>"; };
 		458CDBBC12BF2528005EBC98 /* CLLocation_TranscoderExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLLocation_TranscoderExtensions.m; sourceTree = "<group>"; };
 		458FF5921270CA6100FCD632 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		458FF5931270CA6100FCD632 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		458FF5951270CA6100FCD632 /* CAnythingDBServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnythingDBServer.h; sourceTree = "<group>"; };
 		458FF5961270CA6100FCD632 /* CAnythingDBServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CAnythingDBServer.m; sourceTree = "<group>"; };
 		458FF5971270CA6100FCD632 /* CMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMainWindowController.h; sourceTree = "<group>"; };
@@ -529,7 +527,7 @@
 		45C55F651277EF5D00E8F8BA /* UIViewDebugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewDebugging.h; sourceTree = "<group>"; };
 		45C55F661277EF5D00E8F8BA /* UIViewDebugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewDebugging.m; sourceTree = "<group>"; };
 		45CD4687126CD8DD00F38B80 /* Asserts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asserts.h; sourceTree = "<group>"; };
-		45DC06EF13ABFCEC00AE30A7 /* AnythingDB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AnythingDB.storyboard; sourceTree = "<group>"; };
+		45DC06EF13ABFCEC00AE30A7 /* AnythingDB.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AnythingDB.storyboard; path = ../Source/AnythingDB.storyboard; sourceTree = "<group>"; };
 		45DF2F2C12729CAB00C72889 /* CObjectTranscoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CObjectTranscoder.h; sourceTree = "<group>"; };
 		45DF2F2D12729CAB00C72889 /* CObjectTranscoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CObjectTranscoder.m; sourceTree = "<group>"; };
 		45DF2FC11272A55500C72889 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
@@ -1015,9 +1013,9 @@
 		458FF5911270CA6100FCD632 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				45DC06EF13ABFCEC00AE30A7 /* AnythingDB.storyboard */,
 				455136F312823EAD0087EDD0 /* Icon.png */,
 				458FF5921270CA6100FCD632 /* Info.plist */,
-				458FF5931270CA6100FCD632 /* MainWindow.xib */,
 				4553144A129206B900A32988 /* InfoPlist.strings */,
 				456B04E912C023CC003CBCCE /* Settings.bundle */,
 			);
@@ -1039,7 +1037,6 @@
 				458FF5A61270CA6100FCD632 /* CPostViewController.m */,
 				458FF5A81270CA6100FCD632 /* main.m */,
 				458FF5A91270CA6100FCD632 /* Prefix.pch */,
-				45DC06EF13ABFCEC00AE30A7 /* AnythingDB.storyboard */,
 				458CD64012BED573005EBC98 /* CLocationTracker.h */,
 				458CD64112BED573005EBC98 /* CLocationTracker.m */,
 				456B050812C02526003CBCCE /* NSUserDefaults_AnythingBucketExtensions.h */,
@@ -1407,7 +1404,6 @@
 				45C55FA31277EF5D00E8F8BA /* glossyButton-normal.png in Resources */,
 				455136F412823EAD0087EDD0 /* Icon.png in Resources */,
 				456B04EA12C023CC003CBCCE /* Settings.bundle in Resources */,
-				45C2D4D413ABF8FE00DE93FD /* MainWindow.xib in Resources */,
 				45DC06F013ABFCEC00AE30A7 /* AnythingDB.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1632,7 +1628,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals/BumpAPIv1.14\"",
@@ -1654,7 +1650,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals/BumpAPIv1.14\"",
