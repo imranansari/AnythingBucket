@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CMainWindowController : NSObject {
-    UIWindow *window;
+@interface CMainController : NSObject {
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

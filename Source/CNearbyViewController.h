@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class MKMapView;
+@class CMarqueeView;
 
 @interface CNearbyViewController : UIViewController {
-    MKMapView *mapView;
 }
 
 @property (readwrite, nonatomic, retain) IBOutlet MKMapView *mapView;
+@property (readwrite, nonatomic, retain) IBOutlet CMarqueeView *marqueeView;
 
 @end

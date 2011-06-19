@@ -58,18 +58,17 @@
 //																				nil];
 //	NSURL *theAuthURL = [NSURL URLWithString:@"https://touchcode.couchone.com"];
 //	MPOAuthAPI *theOAuthAPI = [[[MPOAuthAPI alloc] initWithCredentials:theCredentials authenticationURL:theAuthURL andBaseURL:theAuthURL autoStart:YES] autorelease];
-//	NSLog(@"%@", theOAuthAPI);
 
 
-	NSMutableDictionary *theDefaults = [NSMutableDictionary dictionary];
-	for (NSString *theKey in [NSArray arrayWithObjects:@"purpose", @"distanceFilter", @"desiredAccuracy", @"location", @"headingFilter", @"headingOrientation", @"heading", @"maximumRegionMonitoringDistance", @"monitoredRegions", NULL])
-		{
-		id theValue = [theLocationManager valueForKey:theKey];
-		if (theValue != NULL)
-			{
-			[theDefaults setObject:theValue forKey:theKey];
-			}
-		}
+//	NSMutableDictionary *theDefaults = [NSMutableDictionary dictionary];
+//	for (NSString *theKey in [NSArray arrayWithObjects:@"purpose", @"distanceFilter", @"desiredAccuracy", @"location", @"headingFilter", @"headingOrientation", @"heading", @"maximumRegionMonitoringDistance", @"monitoredRegions", NULL])
+//		{
+//		id theValue = [theLocationManager valueForKey:theKey];
+//		if (theValue != NULL)
+//			{
+//			[theDefaults setObject:theValue forKey:theKey];
+//			}
+//		}
 
 	theLocationManager.delegate = self;
 	theLocationManager.purpose = @"For whatever the hell I want";
@@ -79,17 +78,17 @@
 	
 	self.locationManager = theLocationManager;
 	
-	CPersistentOperationQueue *theOperationQueue = [[CPersistentOperationQueue alloc] initWithName:@"locations"];
-	theOperationQueue.unhibernateBlock = ^(NSOperation *inOperation) {
-		CCouchDBURLOperation *theOperation = (CCouchDBURLOperation *)inOperation;
-		theOperation.successHandler = (CouchDBSuccessHandler)^(CCouchDBDocument *inDocument) {
+//	CPersistentOperationQueue *theOperationQueue = [[CPersistentOperationQueue alloc] initWithName:@"locations"];
+//	theOperationQueue.unhibernateBlock = ^(NSOperation *inOperation) {
+//		CCouchDBURLOperation *theOperation = (CCouchDBURLOperation *)inOperation;
+//		theOperation.successHandler = (CouchDBSuccessHandler)^(CCouchDBDocument *inDocument) {
 //			LogInformation_(@"Posted location: %@", inDocument);
-			};
-		
-		theOperation.failureHandler = ^(NSError *inError) {
-			LogInformation_(@"Failed to post location: %@", inError);
-			};
-		};
+//			};
+//		
+//		theOperation.failureHandler = ^(NSError *inError) {
+//			LogInformation_(@"Failed to post location: %@", inError);
+//			};
+//		};
 	}
 
 #pragma mark -
@@ -97,12 +96,17 @@
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 	{
 	LogInformation_(@"DID UPDATE TO LOC: %@", newLocation);
+    
+//    CLGeocoder *theGeocoder = [[CLGeocoder alloc] init];
+//    [theGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray * placemarks, NSError * error) {
+//        NSLog(@"%@", placemarks);
+//        }];
 	
-	UILocalNotification *theNotification = [[UILocalNotification alloc] init];
-	theNotification.alertBody = @"Yo location changed";
-	theNotification.hasAction = YES;
-	theNotification.alertAction = @"Do something";
-	[[UIApplication sharedApplication] presentLocalNotificationNow:theNotification];
+//	UILocalNotification *theNotification = [[UILocalNotification alloc] init];
+//	theNotification.alertBody = @"Yo location changed";
+//	theNotification.hasAction = YES;
+//	theNotification.alertAction = @"Do something";
+//	[[UIApplication sharedApplication] presentLocalNotificationNow:theNotification];
 
 	NSMutableDictionary *theDocument = [NSMutableDictionary dictionary];
 	[theDocument setObject:[NSDate date] forKey:@"timestamp"];
@@ -114,7 +118,6 @@
 	[theDocument setObject:theLocationDocument forKey:@"location"];
 
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
-//		LogInformation_(@"Posted location: %@", inDocument);
         };
     
 	id theFailureHandler = ^(NSError *inError) {
