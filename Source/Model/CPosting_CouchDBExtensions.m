@@ -30,12 +30,13 @@
 
     [theDocument setObject:@"posting" forKey:@"type"];
 
+    __block CPosting *_self = self;
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
         
 		self.externalID = inDocument.identifier;
 
 		
-        for (CAttachment *theAttachment in self.attachments)
+        for (CAttachment *theAttachment in _self.attachments)
             {
             CCouchDBAttachment *theCouchAttachment = [[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data];
             
@@ -46,6 +47,8 @@
             {
             inSuccessHandler(inDocument);
             }
+            
+        _self = NULL;
         };
     
     CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].anythingBucketDatabase operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];

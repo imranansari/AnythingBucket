@@ -60,7 +60,6 @@
 		}
 	return(self);
 	}
-
     
 #pragma mark -	
 
@@ -73,7 +72,7 @@
         id theBlock = ^ (void) {
             CPosting *thePosting = [NSEntityDescription insertNewObjectForEntityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
             
-            CLLocation *theLocation = [CBetterLocationManager instance].location;
+            CLLocation *theLocation = [CBetterLocationManager sharedInstance].location;
             posting.location = theLocation;
             
             posting = thePosting;
@@ -111,8 +110,8 @@
     {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(betterLocationManagerDidUpdateToLocationNotification:) name:kBetterLocationManagerDidUpdateToLocationNotification object:[CBetterLocationManager instance]];
-    [[CBetterLocationManager instance] startUpdatingLocation:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(betterLocationManagerDidUpdateToLocationNotification:) name:kBetterLocationManagerDidUpdateToLocationNotification object:[CBetterLocationManager sharedInstance]];
+    [[CBetterLocationManager sharedInstance] startUpdatingLocation:NULL];
 
 //    __block CPostViewController *_self = self;
 //    KVOBlock theKVOBlock = ^(NSString *keyPath, id object, NSDictionary *change, id identifier) {
@@ -251,7 +250,7 @@
     {
     NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
     id theTransactionBlock = ^ (void) {
-		self.posting.location = [CBetterLocationManager instance].location;
+		self.posting.location = [CBetterLocationManager sharedInstance].location;
 		};
 	NSError *theError = NULL;
 	if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
@@ -262,7 +261,6 @@
     
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
     {
-//    NSLog(@"%@", error);
     }
     
 #pragma mark -
@@ -380,7 +378,6 @@
     
     CGSize theSize = [theNewString sizeWithFont:self.bodyTextView.font constrainedToSize:(CGSize){320, 99999} lineBreakMode:UILineBreakModeWordWrap];
     
-//    NSLog(@"%@", NSStringFromCGSize(theSize));
     if (theSize.height > 67)
         {
         [self.tableView beginUpdates];
@@ -393,7 +390,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
     {
-//    NSLog(@"%@", info);
     id theMediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([theMediaType isEqualToString:(id)kUTTypeImage])
         {
@@ -426,12 +422,7 @@
         {
         // NSCache
         // public.movie
-//        NSLog(@"%@", info);
 
-//    NSLog(@"%@", UTTypeCopyPreferredTagWithClass(kUTTypeMovie, kUTTagClassMIMEType));
-
-
-//        NSLog(@"%@", UTTypeCopyDeclaration(kUTTypeMovie));
 
         NSURL *theMediaURL = [info objectForKey:UIImagePickerControllerMediaURL];
         NSData *theData = NULL;
@@ -439,7 +430,7 @@
             {
             NSError *theError = NULL;
             theData = [NSData dataWithContentsOfURL:theMediaURL options:NSDataReadingMapped error:&theError];
-            NSLog(@"%@", theError);
+            NSLog(@"Error: %@", theError);
             }
 
 //        self.posting.attachments = [NSArray arrayWithObjects:

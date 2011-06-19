@@ -22,8 +22,6 @@
 
         CGRect theFrame = self.view.frame;
         
-//        NSLog(@"%@", NSStringFromCGRect(theFrame));
-        
         objc_setAssociatedObject(self, "foo", [NSValue valueWithCGRect:theFrame], OBJC_ASSOCIATION_RETAIN);
         
         theFrame = [self.view convertRect:theFrame toView:self.view.window];

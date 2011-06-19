@@ -36,7 +36,6 @@
 	{
 	[super viewDidLoad];
     
-	
     self.managedObjectContext = [CAnythingDBModel instance].managedObjectContext;
     
     NSFetchRequest *theFetchRequest = [[NSFetchRequest alloc] init];
@@ -103,7 +102,7 @@
 						}
 					@catch (NSException * e)
 						{
-						NSLog(@"%@", e);
+						NSLog(@"Exception: %@", e);
 						}
 					}
 				};

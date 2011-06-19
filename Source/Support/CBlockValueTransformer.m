@@ -35,13 +35,6 @@
     return(self);
     }
 
-- (void)dealloc
-    {
-    block = NULL;
-    reverseBlock = NULL;
-    //
-    }
-
 - (id)transformedValue:(id)value
     {
     if (self.block)

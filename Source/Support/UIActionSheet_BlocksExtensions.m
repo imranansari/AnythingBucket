@@ -74,13 +74,6 @@ if ((self = [super init]) != NULL)
 return(self);
 }
 
-- (void)dealloc
-    {
-    NSLog(@"HANDLER DEALLOC");
-    
-    //
-    }
-
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
     {
     void (^theBlock)(void) = [self.handlersByIndex objectForKey:[NSNumber numberWithUnsignedInteger:buttonIndex]];

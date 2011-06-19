@@ -26,12 +26,6 @@
     return(self);
     }
 
-- (void)dealloc
-    {
-    textField = NULL;
-    //
-    }
-
 - (UITextField *)textField
     {
     if (textField == NULL)
