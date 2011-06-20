@@ -292,12 +292,7 @@
         
         [self dismissModalViewControllerAnimated:YES];
         };
-    CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
-        NSLog(@"Error: %@", inError);
-//        [[CUserNotificationManager instance] dequeueCurrentNotification];
-        [self presentError:inError];
-        };
-    [self.posting postWithSuccessHandler:theSuccessHandler failureHandler:theFailureHandler];
+    [self.posting postWithSuccessHandler:theSuccessHandler failureHandler:NULL];
     }
 
 - (IBAction)keyboard:(id)inSender

@@ -79,11 +79,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
-         timestampString = "330194456.193885"
+         timestampString = "330250806.466813"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "268"
-         endingLineNumber = "268"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -93,26 +93,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
-         timestampString = "330194456.193885"
+         timestampString = "330250806.466813"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "280"
-         endingLineNumber = "280"
+         startingLineNumber = "316"
+         endingLineNumber = "316"
          landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         isPathRelative = "1"
-         filePath = "Externals/trundle/Source/CCouchDBServer.m"
-         timestampString = "330197810.020988"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
-         landmarkName = "-requestWithURL:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -127,6 +113,48 @@
          startingLineNumber = "183"
          endingLineNumber = "183"
          landmarkName = "-logEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
+         timestampString = "330250806.466813"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
+         landmarkName = "-operationToFetchDocumentForIdentifier:options:successHandler:failureHandler:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/TouchLogging/Source/CLogging.m"
+         timestampString = "330251614.088731"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "228"
+         endingLineNumber = "228"
+         landmarkName = "-logLevel:userInfo:messageFormat:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Source/CMainController.m"
+         timestampString = "330251632.873763"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "54"
+         endingLineNumber = "54"
+         landmarkName = "-application:didFinishLaunchingWithOptions:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

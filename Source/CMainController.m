@@ -17,6 +17,8 @@
 #import "UIAlertView_BlocksExtensions.h"
 #import "CJSONFileLoggingDestination.h"
 #import "CMemoryLogDestination.h"
+#import "CCouchDBDatabase.h"
+#import "CCouchDBSession.h"
 
 @interface CMainController () <UIApplicationDelegate, UITabBarControllerDelegate>
 @end
@@ -36,6 +38,8 @@
 //    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
 //    [NSURLCache setSharedURLCache:sharedCache];
 
+    // #########################################################################
+
     [[CLogging sharedInstance] addDefaultDestinations];
 
     NSError *theError = NULL;
@@ -44,8 +48,16 @@
     [[CLogging sharedInstance] addDestination:[[CJSONFileLoggingDestination alloc] initWithURL:theLogFile]];
 
     [[CLogging sharedInstance] addDestination:[CMemoryLogDestination sharedInstance]];
+
+    // #########################################################################
     
-    LogInformation_(@"Application did launch:%@", launchOptions);
+    LogDict_(LoggingLevel_DEBUG, launchOptions, @"Application did launch");
+
+    // #########################################################################
+
+    [self.window makeKeyAndVisible];
+
+    // #########################################################################
     
 	if ([NSUserDefaults standardUserDefaults].username.length == 0 || [NSUserDefaults standardUserDefaults].password == 0)
 		{
@@ -57,10 +69,19 @@
         theAlertView.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
         [theAlertView show];
         }
+
+    // #########################################################################
+
+    CCouchDBDatabase *theDatabase = [[CCouchDBDatabase alloc] initWithURL:[NSURL URLWithString:@"https://touchcode.couchone.com/applications"]];
+    CouchDBSuccessHandler theSuccessHandler = (id)^(id inParameter) { NSLog(@"%@", inParameter); };
+    id theOperation = [theDatabase operationToFetchDocumentForIdentifier:[NSBundle mainBundle].bundleIdentifier options:NULL successHandler:theSuccessHandler failureHandler:NULL];
+    [theDatabase.session.operationQueue addOperation:theOperation];
     
+    // #########################################################################
     
-    [self.window makeKeyAndVisible];
     [CAnythingDBServer sharedInstance];
+
+    // #########################################################################
 	
 	[CLocationTracker sharedInstance];
 	

@@ -19,6 +19,9 @@
 #import "CURLOperation.h"
 #import "CCouchDBSession.h"
 #import "CCouchDBChangeSet.h"
+#import "CCouchDBView.h"
+#import "CCouchDBViewRow.h"
+#import "CErrorPresenter.h"
 
 @implementation CPostingsTableViewController
 
@@ -55,10 +58,6 @@
 
 	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
 	
-	CouchDBFailureHandler theFailureHandler = ^(NSError *inError) {
-		NSLog(@"CouchDB Failure: %@", inError);
-		};
-	
     CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
         NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
         
@@ -75,14 +74,15 @@
         NSError *theError = NULL;
         if ([theContext performTransaction:theDeleteTransaction error:&theError] == NO && theError != NULL)
             {
-			theFailureHandler(theError);
+			[[CLogging sharedInstance] logError:theError];
 			return;
             }
 
-		CouchDBSuccessHandler theSuccessHandler = (id)^(id inParameter) {
+		CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBView *view) {
 			id theCreateTransaction = ^(void) {
-				for (CCouchDBDocument *theDocument in inParameter)
+				for (CCouchDBViewRow *theRow in view.rows)
 					{
+                    CCouchDBDocument *theDocument = theRow.document;
 					NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
 					BOOL theWasCreatedFlag = NO;
 					NSError *theError = NULL;
@@ -109,16 +109,16 @@
 			NSError *theError = NULL;
 			if ([theContext performTransaction:theCreateTransaction error:&theError] == NO && theError != NULL)
 				{
-				theFailureHandler(theError);
+				[self presentError:theError];
 				return;
 				}
 			};
 
-		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocumentIdentifiers allObjects] options:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
+		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocumentIdentifiers allObjects] options:NULL successHandler:theSuccessHandler failureHandler:NULL];
 		[theDatabase.server.session.operationQueue addOperation:theOperation];
         };
 
-	CURLOperation *theOperation = [theDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:theFailureHandler];
+	CURLOperation *theOperation = [theDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:NULL];
 	[theDatabase.server.session.operationQueue addOperation:theOperation];
 	}
 

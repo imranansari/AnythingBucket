@@ -130,6 +130,8 @@
 		45969A18127F772E00ED5E85 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45969A17127F772E00ED5E85 /* AudioToolbox.framework */; };
 		45A4D61313AD2607001226CC /* CJSONFileLoggingDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 45A4D61213AD2607001226CC /* CJSONFileLoggingDestination.m */; };
 		45AEE0BE128B45EC00888C51 /* CCouchDBDesignDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 45AEE0BD128B45EC00888C51 /* CCouchDBDesignDocument.m */; };
+		45B9083A13AF292D00536B36 /* CCouchDBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B9083713AF292D00536B36 /* CCouchDBView.m */; };
+		45B9083B13AF292D00536B36 /* CCouchDBViewRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 45B9083913AF292D00536B36 /* CCouchDBViewRow.m */; };
 		45C55EEE1277EF4D00E8F8BA /* CTemporaryFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EED1277EF4D00E8F8BA /* CTemporaryFile.m */; };
 		45C55F671277EF5D00E8F8BA /* CWindowViewFlipper.m in Sources */ = {isa = PBXBuildFile; fileRef = 45C55EF21277EF5D00E8F8BA /* CWindowViewFlipper.m */; };
 		45C55F681277EF5D00E8F8BA /* BookmarkButtonBackground_A.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C55EF51277EF5D00E8F8BA /* BookmarkButtonBackground_A.png */; };
@@ -430,6 +432,11 @@
 		45A4D61213AD2607001226CC /* CJSONFileLoggingDestination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONFileLoggingDestination.m; sourceTree = "<group>"; };
 		45AEE0BC128B45EC00888C51 /* CCouchDBDesignDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCouchDBDesignDocument.h; sourceTree = "<group>"; };
 		45AEE0BD128B45EC00888C51 /* CCouchDBDesignDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCouchDBDesignDocument.m; sourceTree = "<group>"; };
+		45B9083613AF292D00536B36 /* CCouchDBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCouchDBView.h; sourceTree = "<group>"; };
+		45B9083713AF292D00536B36 /* CCouchDBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCouchDBView.m; sourceTree = "<group>"; };
+		45B9083813AF292D00536B36 /* CCouchDBViewRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCouchDBViewRow.h; sourceTree = "<group>"; };
+		45B9083913AF292D00536B36 /* CCouchDBViewRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCouchDBViewRow.m; sourceTree = "<group>"; };
+		45B9083C13AF3E1100536B36 /* Trundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trundle.h; sourceTree = "<group>"; };
 		45C55EEC1277EF4D00E8F8BA /* CTemporaryFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTemporaryFile.h; sourceTree = "<group>"; };
 		45C55EED1277EF4D00E8F8BA /* CTemporaryFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTemporaryFile.m; sourceTree = "<group>"; };
 		45C55EF11277EF5D00E8F8BA /* CWindowViewFlipper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWindowViewFlipper.h; sourceTree = "<group>"; };
@@ -891,11 +898,16 @@
 				45471DBA1282770800802C2E /* CCouchDBChangeSet.m */,
 				451AF925126A7C1A001A1D27 /* CCouchDBURLOperation.h */,
 				451AF926126A7C1A001A1D27 /* CCouchDBURLOperation.m */,
+				45B9083613AF292D00536B36 /* CCouchDBView.h */,
+				45B9083713AF292D00536B36 /* CCouchDBView.m */,
+				45B9083813AF292D00536B36 /* CCouchDBViewRow.h */,
+				45B9083913AF292D00536B36 /* CCouchDBViewRow.m */,
 				451AF927126A7C1A001A1D27 /* CouchDBClientConstants.h */,
 				451AF928126A7C1A001A1D27 /* CouchDBClientConstants.m */,
 				451AF929126A7C1B001A1D27 /* CouchDBClientTypes.h */,
 				451AF92A126A7C1B001A1D27 /* NSError_CouchDBExtensions.h */,
 				451AF92B126A7C1B001A1D27 /* NSError_CouchDBExtensions.m */,
+				45B9083C13AF3E1100536B36 /* Trundle.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1642,6 +1654,8 @@
 				45F3C86713AD49AC00643FC8 /* CMemoryLogDestination.m in Sources */,
 				4589323413ADC3A200EAF8D2 /* CMarqueeView.m in Sources */,
 				456F043F13AE580A00A08ECA /* COdometer.m in Sources */,
+				45B9083A13AF292D00536B36 /* CCouchDBView.m in Sources */,
+				45B9083B13AF292D00536B36 /* CCouchDBViewRow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

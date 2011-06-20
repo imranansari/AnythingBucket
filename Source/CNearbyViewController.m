@@ -61,7 +61,7 @@
 //				});
 //		};
 //	
-//	CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].locationsDatabase operationToFetchChanges:[NSDictionary dictionaryWithObject:@"true" forKey:@"include_docs"] successHandler:theSuccessHandler failureHandler:^(NSError * inError) { NSLog(@"Error: %@", inError); }];
+//	CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].locationsDatabase operationToFetchChanges:[NSDictionary dictionaryWithObject:@"true" forKey:@"include_docs"] successHandler:theSuccessHandler failureHandler:NULL];
 //	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
     }
 

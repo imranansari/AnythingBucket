@@ -52,7 +52,7 @@ return(gInstance);
     {
     if ((self = [super initWithSession:NULL URL:[NSUserDefaults standardUserDefaults].serverURL]) != NULL)
         {
-		self.URLCredential = [NSURLCredential credentialWithUser:[NSUserDefaults standardUserDefaults].username password:[NSUserDefaults standardUserDefaults].password persistence:NSURLCredentialPersistenceNone];
+		self.session.URLCredential = [NSURLCredential credentialWithUser:[NSUserDefaults standardUserDefaults].username password:[NSUserDefaults standardUserDefaults].password persistence:NSURLCredentialPersistenceNone];
 
 
 		anythingBucketDatabase = [self databaseNamed:@"anything-db"];
