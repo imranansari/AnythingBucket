@@ -42,6 +42,8 @@ return([self mutableSetValueForKey:@"attachments"]);
 
 @dynamic externalID;
 
+@dynamic externalRevision;
+
 #pragma mark end emogenerator accessors
 
 @end

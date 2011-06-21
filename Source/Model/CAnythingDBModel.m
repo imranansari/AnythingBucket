@@ -8,6 +8,7 @@
 
 #import "CAnythingDBModel.h"
 
+#import "CTrundleIncrementalStore.h"
 
 static CAnythingDBModel *gInstance = NULL;
 
@@ -29,6 +30,10 @@ static CAnythingDBModel *gInstance = NULL;
     {
     if ((self = [super init]) != NULL)
         {
+//        self.storeType = [CTrundleIncrementalStore storeType];
+//        self.persistentStoreURL = [NSURL URLWithString:@"http://foo"];
+
+
         self.name = @"Model";
         self.storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,

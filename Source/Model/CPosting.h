@@ -28,6 +28,7 @@
 @property (readwrite, retain) NSString *body;
 @property (readwrite, retain) id tags;
 @property (readwrite, retain) NSString *externalID;
+@property (readwrite, retain) NSString *externalRevision;
 
 // Relationships
 @property (readonly, retain) NSMutableSet *attachments;

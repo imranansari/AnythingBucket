@@ -44,7 +44,7 @@
 
     NSError *theError = NULL;
     NSURL *theLogFile = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:0 create:YES error:&theError];
-    theLogFile = [theLogFile URLByAppendingPathComponent:@"log.json"];
+    theLogFile = [theLogFile URLByAppendingPathComponent:@"Test.json"];
     [[CLogging sharedInstance] addDestination:[[CJSONFileLoggingDestination alloc] initWithURL:theLogFile]];
 
     [[CLogging sharedInstance] addDestination:[CMemoryLogDestination sharedInstance]];
@@ -72,10 +72,10 @@
 
     // #########################################################################
 
-    CCouchDBDatabase *theDatabase = [[CCouchDBDatabase alloc] initWithURL:[NSURL URLWithString:@"https://touchcode.couchone.com/applications"]];
-    CouchDBSuccessHandler theSuccessHandler = (id)^(id inParameter) { NSLog(@"%@", inParameter); };
-    id theOperation = [theDatabase operationToFetchDocumentForIdentifier:[NSBundle mainBundle].bundleIdentifier options:NULL successHandler:theSuccessHandler failureHandler:NULL];
-    [theDatabase.session.operationQueue addOperation:theOperation];
+//    CCouchDBDatabase *theDatabase = [[CCouchDBDatabase alloc] initWithURL:[NSURL URLWithString:@"https://touchcode.couchone.com/applications"]];
+//    CouchDBSuccessHandler theSuccessHandler = (id)^(id inParameter) { NSLog(@"%@", inParameter); };
+//    id theOperation = [theDatabase operationToFetchDocumentForIdentifier:[NSBundle mainBundle].bundleIdentifier options:NULL successHandler:theSuccessHandler failureHandler:NULL];
+//    [theDatabase.session.operationQueue addOperation:theOperation];
     
     // #########################################################################
     

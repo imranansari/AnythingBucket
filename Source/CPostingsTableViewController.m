@@ -42,10 +42,12 @@
     self.managedObjectContext = [CAnythingDBModel instance].managedObjectContext;
     
     NSFetchRequest *theFetchRequest = [[NSFetchRequest alloc] init];
-    theFetchRequest.entity = [NSEntityDescription entityForName:[CPosting entityName] inManagedObjectContext:[CAnythingDBModel instance].managedObjectContext];
+    theFetchRequest.entity = [NSEntityDescription entityForName:[CPosting entityName] inManagedObjectContext:self.managedObjectContext];
 	theFetchRequest.predicate = [NSPredicate predicateWithFormat:@"externalID != NULL"];
     theFetchRequest.sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
     self.fetchRequest = theFetchRequest;
+
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSaveNotification:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext];
 
 	self.clearsSelectionOnViewWillAppear = NO;
 
@@ -83,6 +85,11 @@
 				for (CCouchDBViewRow *theRow in view.rows)
 					{
                     CCouchDBDocument *theDocument = theRow.document;
+                    
+                    if ([theDocument.identifier rangeOfString:@"_design/"].location == 0)
+                        continue;
+                    
+                    
 					NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
 					BOOL theWasCreatedFlag = NO;
 					NSError *theError = NULL;
@@ -91,6 +98,7 @@
 						{
 						thePosting.externalID = theDocument.identifier;
 						}
+                    thePosting.externalRevision = theDocument.revision;
 						
 					@try
 						{
@@ -150,8 +158,46 @@
 	NSLog(@"%@", thePosting);
 	}
 	
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath;
+	{
+	return(UITableViewCellEditingStyleDelete);
+	}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+	{
+	if (editingStyle == UITableViewCellEditingStyleDelete)
+		{
+        CPosting *thePosting = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
+		CURLOperation *theOperation = [theDatabase operationToDeleteDocumentForIdentifier:thePosting.externalID revision:thePosting.externalRevision successHandler:^(id inParameter) { NSLog(@"DELETED"); [self.managedObjectContext performTransaction:^(void) { [self.managedObjectContext deleteObject:thePosting]; } error:NULL];
+            } failureHandler:NULL];
+		[theDatabase.server.session.operationQueue addOperation:theOperation];
+
+//		NSManagedObject *theObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//        [self.managedObjectContext performTransaction:^(void) {
+//            [self.managedObjectContext deleteObject:theObject];
+//            } error:NULL];
+		}   
+    else
+        {
+        [super tableView:tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath];
+        }
+	}
+
+    
 #pragma mark -
 
+//- (void)managedObjectContextDidSaveNotification:(NSNotification *)inNotification
+//    {
+//    NSSet *theDeletedObjects = [[inNotification userInfo] objectForKey:NSDeletedObjectsKey];
+//    for (CPosting *thePosting in theDeletedObjects)
+//        {
+//        CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
+//		CURLOperation *theOperation = [theDatabase operationToDeleteDocumentForIdentifier:thePosting.externalID revision:thePosting.externalRevision successHandler:^(id inParameter) { NSLog(@"DELETED"); } failureHandler:NULL];
+//		[theDatabase.server.session.operationQueue addOperation:theOperation];
+//        }
+//    }
 
 @end
 

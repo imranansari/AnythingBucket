@@ -9,11 +9,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CFileHandleLoggingDestination.m"
-         timestampString = "330119009.996928"
+         timestampString = "330290905.931299"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
          landmarkName = "-dealloc"
          landmarkType = "5">
       </FileBreakpoint>
@@ -23,11 +23,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CFileHandleLoggingDestination.m"
-         timestampString = "330119009.996928"
+         timestampString = "330290905.931299"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
          landmarkName = "-initWithURL:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -37,11 +37,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CFileHandleLoggingDestination.m"
-         timestampString = "330119122.133162"
+         timestampString = "330290905.931299"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "172"
-         endingLineNumber = "172"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
          landmarkName = "-logging:didLogEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,11 +65,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CFileHandleLoggingDestination.m"
-         timestampString = "330119009.996928"
+         timestampString = "330290905.931299"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "155"
-         endingLineNumber = "155"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
          landmarkName = "-logging:didLogEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -79,12 +79,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
-         timestampString = "330250806.466813"
+         timestampString = "330304568.808607"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "302"
-         endingLineNumber = "302"
-         landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
+         startingLineNumber = "327"
+         endingLineNumber = "327"
+         landmarkName = "-operationToDeleteDocumentForIdentifier:revision:successHandler:failureHandler:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -93,12 +93,12 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
-         timestampString = "330250806.466813"
+         timestampString = "330304568.808607"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "316"
-         endingLineNumber = "316"
-         landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
+         startingLineNumber = "341"
+         endingLineNumber = "341"
+         landmarkName = "-operationToDeleteDocumentForIdentifier:revision:successHandler:failureHandler:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -107,11 +107,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CLogging.m"
-         timestampString = "330198682.150386"
+         timestampString = "330303175.752923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "183"
-         endingLineNumber = "183"
+         startingLineNumber = "189"
+         endingLineNumber = "189"
          landmarkName = "-logEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -135,11 +135,11 @@
          continueAfterRunningActions = "No"
          isPathRelative = "1"
          filePath = "Externals/TouchLogging/Source/CLogging.m"
-         timestampString = "330251614.088731"
+         timestampString = "330303175.752923"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "228"
-         endingLineNumber = "228"
+         startingLineNumber = "234"
+         endingLineNumber = "234"
          landmarkName = "-logLevel:userInfo:messageFormat:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -155,6 +155,34 @@
          startingLineNumber = "54"
          endingLineNumber = "54"
          landmarkName = "-application:didFinishLaunchingWithOptions:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/TouchLogging/Source/CFileLoggingDestination.m"
+         timestampString = "330295412.618596"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
+         landmarkName = "-logging:didLogEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/TouchLogging/Source/CFileLoggingDestination.m"
+         timestampString = "330296522.792667"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
+         landmarkName = "-logging:didLogEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
