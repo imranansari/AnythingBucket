@@ -9,20 +9,21 @@
 #import "CTrundleIncrementalStore.h"
 
 #import "Trundle.h"
+#import "NSOperationQueue_Extensions.h"
+#import "CAnythingDBServer.h"
 
 @interface CTrundleIncrementalStore ()
 @property (readwrite, nonatomic, retain) NSString *identifier;
-@property (readwrite, strong) CCouchDBSession *session;
-@property (readwrite, strong) CCouchDBServer *server;
 @property (readwrite, strong) CCouchDBDatabase *database;
+@property (readwrite, strong) NSCache *documentCache;
+
 @end
 
 @implementation CTrundleIncrementalStore
 
 @synthesize identifier;
-@synthesize session;
-@synthesize server;
 @synthesize database;
+@synthesize documentCache;
 
 + (void)load
     {
@@ -48,9 +49,8 @@
 	{
 	if ((self = [super initWithPersistentStoreCoordinator:root configurationName:name URL:url options:options]) != NULL)
 		{
-        session = [[CCouchDBSession alloc] init];
-        server = [[CCouchDBServer alloc] initWithSession:session URL:[NSURL URLWithString:@"http://localhost:5984/"]];
-        database = [[CCouchDBDatabase alloc] initWithServer:server name:@"coredata_test"];
+        database = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
+        documentCache = [[NSCache alloc] init];
 		}
 	return(self);
 	}
@@ -73,24 +73,60 @@
         NSAssert([request isKindOfClass:[NSFetchRequest class]], @"Wrong class");
         NSFetchRequest *theFetchRequest = ((NSFetchRequest *)request);
         const NSFetchRequestResultType theResulttype = theFetchRequest.resultType;
-        
-        NSLog(@"%d %d", request.requestType, theResulttype);
-        
+
+
         switch (theResulttype)
             {
             case NSManagedObjectResultType:
                 {
-                NSManagedObjectID *theObjectID = [self newObjectIDForEntity:theFetchRequest.entity referenceObject:@"FOO"];
-                NSManagedObject *theObject = [context objectWithID:theObjectID];
-//                [theObject setValue:[NSDate date] forKey:@"posted"];
-                return([NSArray arrayWithObject:theObject]);
+//                NSLog(@"%@", theFetchRequest);
+//                NSLog(@"%d", [NSThread isMainThread]);
+//
+
+                __block CCouchDBView *theView = NULL;
+
+                CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBView *view) {
+                    theView = view;
+                    };
+                            
+                id theOperation = [self.database operationToFetchAllDocumentsWithOptions:[NSDictionary dictionary] withSuccessHandler:theSuccessHandler failureHandler:NULL];
+                [self.database.session.operationQueue addOperations:[NSArray arrayWithObject:theOperation] waitUntilFinished:YES];
+                
+                NSMutableArray *theObjects = [NSMutableArray array];
+                for (CCouchDBViewRow *theRow in theView.rows)
+                    {
+                    CCouchDBDocument *theDocument = theRow.document;
+                    
+                    if ([theDocument.identifier rangeOfString:@"_design/"].location == 0)
+                        continue;
+
+                    NSManagedObjectID *theObjectID = [self newObjectIDForEntity:theFetchRequest.entity referenceObject:theDocument.identifier];
+                    NSManagedObject *theObject = [context objectWithID:theObjectID];
+                    
+                    if ([self.documentCache objectForKey:theDocument.identifier] == NULL)
+                        {
+                        [self.documentCache setObject:[NSNull null] forKey:theDocument.identifier];
+                        
+                        CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBDocument *inDocument) {
+                            [self.documentCache setObject:theDocument forKey:inDocument];
+                            };
+                        id theOperation = [self.database operationToFetchDocument:theDocument options:NULL successHandler:theSuccessHandler failureHandler:NULL];
+                        [self.database.session.operationQueue addOperation:theOperation];
+                        }
+                    
+                    [theObjects addObject:theObject];
+                    }
+                return(theObjects);
                 }
                 break;
             case NSManagedObjectIDResultType:
+                NSLog(@"TODO: NSManagedObjectIDResultType");
                 break;
             case NSDictionaryResultType:
+                NSLog(@"TODO: NSDictionaryResultType");
                 break;
             case NSCountResultType:
+                NSLog(@"TODO: NSCountResultType");
                 break;
             }
         
@@ -98,17 +134,23 @@
         }
     else if (request.requestType == NSSaveRequestType)
         {
-        NSLog(@"SAVE");
+        NSLog(@"TODO: NSSaveRequestType");
         }
     return(NULL);
     }
 
 - (NSIncrementalStoreNode *)newValuesForObjectWithID:(NSManagedObjectID*)objectID withContext:(NSManagedObjectContext*)context error:(NSError**)error
     {
-    NSDictionary *theDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSDate date], @"posted",
-        NULL];
-    NSIncrementalStoreNode *theNode = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:theDictionary version:1];
+    NSString *theExternalIdentifier = [self referenceObjectForObjectID:objectID];
+    
+    CCouchDBDocument *theDocument = [self.documentCache objectForKey:theExternalIdentifier];
+    if (theDocument == NULL)
+        {
+        NSLog(@"Error: no loady!");
+        return(NULL);
+        }
+
+    NSIncrementalStoreNode *theNode = [[NSIncrementalStoreNode alloc] initWithObjectID:objectID withValues:theDocument.content version:1];
     return(theNode);
     }
 

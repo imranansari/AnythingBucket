@@ -58,76 +58,76 @@
 	{
 	[super viewWillAppear:animated];
 
-	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
-	
-    CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
-        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
-        
-        id theDeleteTransaction = ^(void) {
-			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocumentsIdentifiers];
-			NSError *theError = NULL;
-			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
-			for (CPosting *thePosting in theDeletedPostings)
-				{
-				[theContext deleteObject:thePosting];
-				}
-			};
-        
-        NSError *theError = NULL;
-        if ([theContext performTransaction:theDeleteTransaction error:&theError] == NO && theError != NULL)
-            {
-			[[CLogging sharedInstance] logError:theError];
-			return;
-            }
-
-		CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBView *view) {
-			id theCreateTransaction = ^(void) {
-				for (CCouchDBViewRow *theRow in view.rows)
-					{
-                    CCouchDBDocument *theDocument = theRow.document;
-                    
-                    if ([theDocument.identifier rangeOfString:@"_design/"].location == 0)
-                        continue;
-                    
-                    
-					NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
-					BOOL theWasCreatedFlag = NO;
-					NSError *theError = NULL;
-					CPosting *thePosting = [theContext fetchObjectOfEntityForName:[CPosting entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
-					if (theWasCreatedFlag == YES)
-						{
-						thePosting.externalID = theDocument.identifier;
-						}
-                    thePosting.externalRevision = theDocument.revision;
-						
-					@try
-						{
-						NSString *theTitle = [theDocument.content objectForKey:@"title"];
-						if (theTitle != NULL && theTitle != (id)[NSNull null] && [theTitle isKindOfClass:[NSString class]])
-							{
-							thePosting.title = [theDocument.content objectForKey:@"title"];
-							}
-						}
-					@catch (NSException * e)
-						{
-						NSLog(@"Exception: %@", e);
-						}
-					}
-				};
-			NSError *theError = NULL;
-			if ([theContext performTransaction:theCreateTransaction error:&theError] == NO && theError != NULL)
-				{
-				[self presentError:theError];
-				return;
-				}
-			};
-
-		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocumentIdentifiers allObjects] options:NULL successHandler:theSuccessHandler failureHandler:NULL];
-		[theDatabase.server.session.operationQueue addOperation:theOperation];
-        };
-
-	CURLOperation *theOperation = [theDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:NULL];
-	[theDatabase.server.session.operationQueue addOperation:theOperation];
+//	CCouchDBDatabase *theDatabase = [CAnythingDBServer sharedInstance].anythingBucketDatabase;
+//	
+//    CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBChangeSet *inChangeSet) {
+//        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+//        
+//        id theDeleteTransaction = ^(void) {
+//			NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID in %@", inChangeSet.deletedDocumentsIdentifiers];
+//			NSError *theError = NULL;
+//			NSArray *theDeletedPostings = [theContext fetchObjectsOfEntityForName:[CPosting entityName] predicate:thePredicate error:&theError];
+//			for (CPosting *thePosting in theDeletedPostings)
+//				{
+//				[theContext deleteObject:thePosting];
+//				}
+//			};
+//        
+//        NSError *theError = NULL;
+//        if ([theContext performTransaction:theDeleteTransaction error:&theError] == NO && theError != NULL)
+//            {
+//			[[CLogging sharedInstance] logError:theError];
+//			return;
+//            }
+//
+//		CouchDBSuccessHandler theSuccessHandler = (id)^(CCouchDBView *view) {
+//			id theCreateTransaction = ^(void) {
+//				for (CCouchDBViewRow *theRow in view.rows)
+//					{
+//                    CCouchDBDocument *theDocument = theRow.document;
+//                    
+//                    if ([theDocument.identifier rangeOfString:@"_design/"].location == 0)
+//                        continue;
+//                    
+//                    
+//					NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"externalID == %@", theDocument.identifier];
+//					BOOL theWasCreatedFlag = NO;
+//					NSError *theError = NULL;
+//					CPosting *thePosting = [theContext fetchObjectOfEntityForName:[CPosting entityName] predicate:thePredicate createIfNotFound:YES wasCreated:&theWasCreatedFlag error:&theError];
+//					if (theWasCreatedFlag == YES)
+//						{
+//						thePosting.externalID = theDocument.identifier;
+//						}
+//                    thePosting.externalRevision = theDocument.revision;
+//						
+//					@try
+//						{
+//						NSString *theTitle = [theDocument.content objectForKey:@"title"];
+//						if (theTitle != NULL && theTitle != (id)[NSNull null] && [theTitle isKindOfClass:[NSString class]])
+//							{
+//							thePosting.title = [theDocument.content objectForKey:@"title"];
+//							}
+//						}
+//					@catch (NSException * e)
+//						{
+//						NSLog(@"Exception: %@", e);
+//						}
+//					}
+//				};
+//			NSError *theError = NULL;
+//			if ([theContext performTransaction:theCreateTransaction error:&theError] == NO && theError != NULL)
+//				{
+//				[self presentError:theError];
+//				return;
+//				}
+//			};
+//
+//		CURLOperation *theOperation = [theDatabase operationToBulkFetchDocuments:[inChangeSet.changedDocumentIdentifiers allObjects] options:NULL successHandler:theSuccessHandler failureHandler:NULL];
+//		[theDatabase.server.session.operationQueue addOperation:theOperation];
+//        };
+//
+//	CURLOperation *theOperation = [theDatabase operationToFetchChanges:NULL successHandler:theSuccessHandler failureHandler:NULL];
+//	[theDatabase.server.session.operationQueue addOperation:theOperation];
 	}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
