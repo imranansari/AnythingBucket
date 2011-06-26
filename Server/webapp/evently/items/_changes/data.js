@@ -22,9 +22,7 @@ function(data) {
 					p.attachments.push(theAttachment);
 					}
 				}
-			else
-				{
-				}
+
 			if ('location' in p)
 				{
 				try {
@@ -35,6 +33,9 @@ function(data) {
 					p.static_map_url = '';
 					}
 				}
+
+
+
 			$.log(p);
 			return(p);
 			})
