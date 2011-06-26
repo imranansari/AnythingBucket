@@ -14,7 +14,7 @@
 + (NSSet *)keysForEncodingAsType:(NSString *)inType
     {
 //    return([NSSet setWithObjects:@"title", NULL]);
-    return([NSSet setWithObjects:@"title", @"body", @"location", @"tags", NULL]);
+    return([NSSet setWithObjects:@"title", @"body", @"location", @"tags", @"created", NULL]);
     }
 
 //+ (NSValueTransformer *)valueTransformerForTranscodingKey:(NSString *)inKey asType:(NSString *)inType
