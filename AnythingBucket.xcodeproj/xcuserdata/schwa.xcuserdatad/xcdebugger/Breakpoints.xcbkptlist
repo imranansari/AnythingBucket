@@ -84,7 +84,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "327"
          endingLineNumber = "327"
-         landmarkName = "-operationToDeleteDocumentForIdentifier:revision:successHandler:failureHandler:"
+         landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -98,7 +98,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "341"
          endingLineNumber = "341"
-         landmarkName = "-operationToDeleteDocumentForIdentifier:revision:successHandler:failureHandler:"
+         landmarkName = "-operationToFetchChanges:successHandler:failureHandler:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -183,6 +183,48 @@
          startingLineNumber = "125"
          endingLineNumber = "125"
          landmarkName = "-logging:didLogEvent:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/trundle/Source/CCouchDBDatabase.m"
+         timestampString = "330809309.121024"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
+         landmarkName = "-operationToCreateDocument:successHandler:failureHandler:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/trundle/Source/CCouchDBDocument.m"
+         timestampString = "330811550.078443"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "212"
+         endingLineNumber = "212"
+         landmarkName = "-addAttachment:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         isPathRelative = "1"
+         filePath = "Externals/trundle/Source/CCouchDBDocument.m"
+         timestampString = "330811550.078443"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "222"
+         endingLineNumber = "222"
+         landmarkName = "-addAttachment:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

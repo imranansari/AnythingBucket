@@ -8,7 +8,6 @@
 
 #import "CPostViewController.h"
 
-#import <iAd/iAd.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -31,7 +30,7 @@
 
 #define UNNULLIFY(x) x == [NSNull null] ? NULL : x;
 
-@interface CPostViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, ADBannerViewDelegate, UITextViewDelegate, UIActionSheetDelegate>
+@interface CPostViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextViewDelegate, UIActionSheetDelegate>
 @property (readwrite, nonatomic, retain) UIImagePickerController *imagePickerController;
 @property (readwrite, nonatomic, assign) CGFloat textViewRowHeight;
 
@@ -55,7 +54,6 @@
 	{
 	if ((self = [super initWithNibName:NSStringFromClass([self class]) bundle:NULL]) != NULL)
 		{
-        self.title = @"Post";
         self.textViewRowHeight = 279;
 		}
 	return(self);
@@ -85,21 +83,16 @@
     return(posting);
     }
 
-#pragma mark -
-
 #pragma mark -	
 
 - (void)viewDidLoad
     {
     [super viewDidLoad];
-    //
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)];
     }
 
 - (void)viewDidUnload
     {
     [super viewDidLoad];
-    //
     //
     self.bodyTextView = NULL;
     self.inputAccessoryView = NULL;
@@ -259,11 +252,12 @@
 		}
     }
     
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error;
-    {
-    }
-    
 #pragma mark -
+
+- (IBAction)cancel:(id)inSender;
+    {
+    [self dismissModalViewControllerAnimated:YES];
+    }
 
 - (IBAction)done:(id)inSender
     {
@@ -278,6 +272,7 @@
 		self.posting.title = self.subjectTextField.text;
 		self.posting.body = self.bodyTextView.text;
 		self.posting.tags = [self.tagsTextField.text componentsSeparatedByString:@","];
+        self.posting.created = [NSDate date];
 		};
 	NSError *theError = NULL;
 	if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
@@ -399,7 +394,6 @@
 //        UIImageWriteToSavedPhotosAlbum(theImage, NULL, NULL, NULL);
 
         NSData *theJPEGRepresentation = UIImageJPEGRepresentation(theImage, 0.8);
-        NSLog(@"%d", [theJPEGRepresentation length]);
         
         NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
         id theTransactionBlock = ^ (void) {
@@ -417,22 +411,32 @@
         }
     else if ([theMediaType isEqualToString:(id)kUTTypeMovie])
         {
-        // NSCache
-        // public.movie
-
-
         NSURL *theMediaURL = [info objectForKey:UIImagePickerControllerMediaURL];
         NSData *theData = NULL;
-        if ([theMediaURL isFileURL])
+        if ([theMediaURL isFileURL] == NO)
             {
-            NSError *theError = NULL;
-            theData = [NSData dataWithContentsOfURL:theMediaURL options:NSDataReadingMapped error:&theError];
+            NSLog(@"Not file URL");
+            [self dismissModalViewControllerAnimated:YES];
+            return;
+            }
+        NSError *theError = NULL;
+        theData = [NSData dataWithContentsOfURL:theMediaURL options:NSDataReadingMapped error:&theError];
+        NSLog(@"Error: %@", theError);
+
+        NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
+        id theTransactionBlock = ^ (void) {
+            CAttachment *theAttachment = [NSEntityDescription insertNewObjectForEntityForName:[CAttachment entityName] inManagedObjectContext:theContext];
+            theAttachment.identifier = @"movie.mov";
+            theAttachment.contentType = @"public/movie";
+            theAttachment.data = theData;
+            [self.posting.attachments addObject:theAttachment];
+            };
+
+        if ([theContext performTransaction:theTransactionBlock error:&theError] == NO)
+            {
             NSLog(@"Error: %@", theError);
             }
 
-//        self.posting.attachments = [NSArray arrayWithObjects:
-//            [[[CCouchDBAttachment alloc] initWithIdentifier:@"movie.mov" contentType:@"video/quicktime" data:theData] autorelease],
-//            NULL];
         }
     
     [self dismissModalViewControllerAnimated:YES];

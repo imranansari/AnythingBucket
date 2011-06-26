@@ -32,29 +32,24 @@
 
     __block CPosting *_self = self;
     id theSuccessHandler = ^(CCouchDBDocument *inDocument) {
-        
 		self.externalID = inDocument.identifier;
-
-		
         for (CAttachment *theAttachment in _self.attachments)
             {
+            NSLog(@"%@", _self.attachments);
+            
             CCouchDBAttachment *theCouchAttachment = [[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data];
             
             [inDocument addAttachment:theCouchAttachment];
             }
-
         if (inSuccessHandler)
             {
             inSuccessHandler(inDocument);
             }
-            
         _self = NULL;
         };
     
     CURLOperation *theOperation = [[CAnythingDBServer sharedInstance].anythingBucketDatabase operationToCreateDocument:theDocument successHandler:theSuccessHandler failureHandler:inFailureHandler];
 	[[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
-	
-	
     }
 
 @end

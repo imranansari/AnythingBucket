@@ -22,6 +22,7 @@
 @property (readwrite, nonatomic, retain) CPosting *posting;
 
 - (IBAction)done:(id)inSender;
+- (IBAction)cancel:(id)inSender;
 - (IBAction)keyboard:(id)inSender;
 - (IBAction)photo:(id)inSender;
 
