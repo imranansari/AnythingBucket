@@ -290,7 +290,9 @@
 
 //        [[CUserNotificationManager instance] dequeueCurrentNotification];
         
-        [self dismissModalViewControllerAnimated:YES];
+        dispatch_async(dispatch_get_main_queue(), ^(void) { [self dismissModalViewControllerAnimated:YES]; });
+        
+        
         };
     [self.posting postWithSuccessHandler:theSuccessHandler failureHandler:NULL];
     }
