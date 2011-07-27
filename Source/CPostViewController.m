@@ -394,6 +394,11 @@
 //        UIImageWriteToSavedPhotosAlbum(theImage, NULL, NULL, NULL);
 
         NSData *theJPEGRepresentation = UIImageJPEGRepresentation(theImage, 0.8);
+        if (theJPEGRepresentation == NULL)
+            {
+            LogError_(@"Could not get jpeg representation");
+            return;
+            }
         
         NSManagedObjectContext *theContext = [CAnythingDBModel instance].managedObjectContext;
         id theTransactionBlock = ^ (void) {

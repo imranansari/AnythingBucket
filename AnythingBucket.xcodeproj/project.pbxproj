@@ -93,6 +93,7 @@
 		4562B12412C18CC700BEC52B /* NSException_LoggingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4562B08512C18CC700BEC52B /* NSException_LoggingExtensions.m */; };
 		456B04EA12C023CC003CBCCE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 456B04E912C023CC003CBCCE /* Settings.bundle */; };
 		456B050A12C02526003CBCCE /* NSUserDefaults_AnythingBucketExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 456B050912C02526003CBCCE /* NSUserDefaults_AnythingBucketExtensions.m */; };
+		456B58CB13B9328F00440861 /* MyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 456B58C913B9325A00440861 /* MyTest.m */; };
 		456F043F13AE580A00A08ECA /* COdometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 456F043E13AE580800A08ECA /* COdometer.m */; };
 		4582169A12D51BE500793E78 /* CGenericOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582169912D51BE500793E78 /* CGenericOverlay.m */; };
 		4589323413ADC3A200EAF8D2 /* CMarqueeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4589323313ADC3A200EAF8D2 /* CMarqueeView.m */; };
@@ -178,6 +179,8 @@
 		45F3C86413AD472800643FC8 /* CLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F3C86313AD472800643FC8 /* CLogViewController.m */; };
 		45F3C86713AD49AC00643FC8 /* CMemoryLogDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 45F3C86613AD49AC00643FC8 /* CMemoryLogDestination.m */; };
 		45FC2A3213B0030500998305 /* CFileHandleLoggingDestination.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FC2A3113B0030500998305 /* CFileHandleLoggingDestination.m */; };
+		45FDB22613B8F37C00DC83C6 /* CLLocation_GeohashExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 459698E8127F6DC700ED5E85 /* CLLocation_GeohashExtensions.m */; };
+		45FDB22713B8F3BC00DC83C6 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 451AF993126A7C83001A1D27 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -304,7 +307,6 @@
 		451AFA86126A8221001A1D27 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		451AFA88126A8221001A1D27 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		451AFA8A126A8221001A1D27 /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
-		451AFA8C126A8221001A1D27 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		451AFA8E126A8221001A1D27 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		451AFA90126A8221001A1D27 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		451AFA92126A8221001A1D27 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
@@ -357,6 +359,8 @@
 		456B04E912C023CC003CBCCE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		456B050812C02526003CBCCE /* NSUserDefaults_AnythingBucketExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUserDefaults_AnythingBucketExtensions.h; sourceTree = "<group>"; };
 		456B050912C02526003CBCCE /* NSUserDefaults_AnythingBucketExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSUserDefaults_AnythingBucketExtensions.m; sourceTree = "<group>"; };
+		456B58C813B9325A00440861 /* MyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTest.h; sourceTree = "<group>"; };
+		456B58C913B9325A00440861 /* MyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTest.m; sourceTree = "<group>"; };
 		456F043D13AE580700A08ECA /* COdometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = COdometer.h; sourceTree = "<group>"; };
 		456F043E13AE580800A08ECA /* COdometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = COdometer.m; sourceTree = "<group>"; };
 		4582161412D5165800793E78 /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
@@ -551,6 +555,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FDB22713B8F3BC00DC83C6 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,7 +601,6 @@
 				451AFA86126A8221001A1D27 /* CoreVideo.framework */,
 				451AFA88126A8221001A1D27 /* EventKit.framework */,
 				451AFA8A126A8221001A1D27 /* EventKitUI.framework */,
-				451AFA8C126A8221001A1D27 /* iAd.framework */,
 				451AFA8E126A8221001A1D27 /* ImageIO.framework */,
 				451AFA90126A8221001A1D27 /* MediaPlayer.framework */,
 				451AFA92126A8221001A1D27 /* QuickLook.framework */,
@@ -620,6 +624,8 @@
 				450825B11280F4FA00196398 /* Unit Tests-Info.plist */,
 				450825BC1280F52100196398 /* Tests.h */,
 				450825BD1280F52100196398 /* Tests.m */,
+				456B58C813B9325A00440861 /* MyTest.h */,
+				456B58C913B9325A00440861 /* MyTest.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -1587,6 +1593,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				450825BF1280F52300196398 /* Tests.m in Sources */,
+				45FDB22613B8F37C00DC83C6 /* CLLocation_GeohashExtensions.m in Sources */,
+				456B58CB13B9328F00440861 /* MyTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1664,6 +1672,9 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = TESTING;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "Unit Tests-Info.plist";
 				OTHER_LDFLAGS = (
@@ -1692,6 +1703,9 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = TESTING;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "Unit Tests-Info.plist";
 				OTHER_LDFLAGS = (

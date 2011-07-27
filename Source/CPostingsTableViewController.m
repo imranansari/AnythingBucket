@@ -99,19 +99,14 @@
 						thePosting.externalID = theDocument.identifier;
 						}
                     thePosting.externalRevision = theDocument.revision;
-						
-					@try
-						{
-						NSString *theTitle = [theDocument.content objectForKey:@"title"];
-						if (theTitle != NULL && theTitle != (id)[NSNull null] && [theTitle isKindOfClass:[NSString class]])
-							{
-							thePosting.title = [theDocument.content objectForKey:@"title"];
-							}
-						}
-					@catch (NSException * e)
-						{
-						NSLog(@"Exception: %@", e);
-						}
+                    thePosting.title = [theDocument.content objectForKey:@"title"];
+
+//                    CObjectTranscoder *theTranscoder = [[CObjectTranscoder alloc] init];
+//                    id theDocument = [theTranscoder transcodedObjectForObject:self error:NULL];
+//
+
+
+
 					}
 				};
 			NSError *theError = NULL;

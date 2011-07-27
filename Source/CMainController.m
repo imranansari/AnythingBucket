@@ -20,6 +20,8 @@
 #import "CCouchDBDatabase.h"
 #import "CCouchDBSession.h"
 
+#import <objc/runtime.h>
+
 @interface CMainController () <UIApplicationDelegate, UITabBarControllerDelegate>
 @end
 

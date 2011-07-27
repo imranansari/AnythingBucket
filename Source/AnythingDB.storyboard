@@ -197,9 +197,7 @@
                                             <segue destination="79" kind="modal" id="65"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Bump" id="51"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="52"/>
-                                    <barButtonItem systemItem="pageCurl" id="53"/>
                                 </items>
                             </toolbar>
                         </subviews>

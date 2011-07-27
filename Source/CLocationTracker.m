@@ -99,7 +99,6 @@
     
 //    CLGeocoder *theGeocoder = [[CLGeocoder alloc] init];
 //    [theGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray * placemarks, NSError * error) {
-//        NSLog(@"%@", placemarks);
 //        }];
 	
 //	UILocalNotification *theNotification = [[UILocalNotification alloc] init];

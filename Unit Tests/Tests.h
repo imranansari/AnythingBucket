@@ -17,10 +17,14 @@
 //#import "application_headers" as required
 
 
-@interface Tests : SenTestCase {
+@interface Tests : SenTestSuite {
 
 }
 
-- (void) testMath;              // simple standalone test
+@end
 
+#pragma mark -
+
+@interface NSObject (NSObject_Tests)
++ (void)failWithException:(NSException *)anException;
 @end

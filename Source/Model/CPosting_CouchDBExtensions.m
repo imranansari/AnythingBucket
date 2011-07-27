@@ -35,11 +35,10 @@
 		self.externalID = inDocument.identifier;
         for (CAttachment *theAttachment in _self.attachments)
             {
-            NSLog(@"%@", _self.attachments);
-            
             CCouchDBAttachment *theCouchAttachment = [[CCouchDBAttachment alloc] initWithIdentifier:theAttachment.identifier contentType:theAttachment.contentType data:theAttachment.data];
-            
-            [inDocument addAttachment:theCouchAttachment];
+
+            CURLOperation *theOperation = [inDocument operationToAddAttachment:theCouchAttachment successHandler:NULL failureHandler:NULL];
+            [[CAnythingDBServer sharedInstance].session.operationQueue addOperation:theOperation];
             }
         if (inSuccessHandler)
             {
