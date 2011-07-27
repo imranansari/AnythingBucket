@@ -7,4 +7,10 @@
     #import <UIKit/UIKit.h>
 	
 	#import "CLogging.h"
+    
+    #if TESTING
+    #import <SenTestingKit/SenTestingKit.h>
+    #import "Tests.h"
+    #endif
+    
 #endif
